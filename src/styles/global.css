@@ -1,0 +1,23 @@
+html {
+	background-color: white;
+}
+
+.banner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	filter: blur(1px);
+}
+
+.header {
+	margin: 3rem auto;
+	padding: 0 1rem;
+	max-width: 950px;
+}
+
+.content {
+	margin: 3rem auto;
+	padding: 0 1rem;
+	max-width: 650px;
+}

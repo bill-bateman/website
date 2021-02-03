@@ -1,0 +1,24 @@
+{
+  "name": "bill-s-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "bill's blog",
+  "author": "Bill Bateman",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^2.26.1",
+    "gatsby-source-filesystem": "^2.10.0",
+    "gatsby-transformer-remark": "^2.15.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
