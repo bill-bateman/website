@@ -1,5 +1,5 @@
 import React from "react"
-import banner from "../images/banner2.jpg"
+import banner from "../content/images/banner2.jpg"
 
 function Banner() {
 	return (<div style={{minHeight:"75px"}}>

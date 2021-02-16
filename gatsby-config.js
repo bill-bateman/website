@@ -3,14 +3,21 @@ module.exports = {
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {
-    			path: `${__dirname}/src/blog/`,
+    			path: `${__dirname}/src/content/blog/`,
     			name: `blog`,
+    		},
+    	},
+    	{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/transcriptions/`,
+    			name: `transcriptions`,
     		},
     	},
 	    {
 	      resolve: `gatsby-source-filesystem`,
 	      options: {
-	        path: `${__dirname}/src/images/`,
+	        path: `${__dirname}/src/content/images/`,
 	      },
 	    },
 	    {
@@ -21,6 +28,7 @@ module.exports = {
 	    				resolve: `gatsby-remark-images`,
 	    				options: {
 	    					maxWidth: 650,
+	    					quality: 100,
 	    				},
 	    			},
 	    		],
