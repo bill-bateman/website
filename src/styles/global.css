@@ -10,6 +10,43 @@ html {
 	filter: blur(1px);
 }
 
+.listfeature {
+	max-height: 100px;
+}
+
+.listtext {
+	text-align: left;
+	margin: 0;
+}
+.listtext span {
+	float: right;
+}
+.listlink {
+	text-decoration: none;
+}
+a.listlink:link {
+	color: black;
+}
+a.listlink:visited {
+	color: purple;
+}
+a.listlink:hover {
+	color: blue;
+}
+a.listlink:active {
+	color: blue;
+}
+
+.filters input {
+	height: 16px;
+	width: 79%;
+}
+.filters select {
+	float: right;
+	height: 22px;
+	width: 19%;
+}
+
 .header {
 	margin: 3rem auto;
 	padding: 0 1rem;
