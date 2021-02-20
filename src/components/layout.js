@@ -4,7 +4,19 @@ import banner from "../content/images/banner2.jpg"
 function Banner() {
 	return (<div style={{minHeight:"75px"}}>
 		<img className="banner" width="100%" height="50px" alt="Banner" src={banner} />
+		<NavBar />
 	</div>)
+}
+
+function NavBar() {
+	return (<div className="navbar">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/posts">Posts</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/resume">Resume</a></li>
+		</ul>
+	</div>);
 }
 
 function Header(props) {

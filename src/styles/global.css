@@ -10,6 +10,61 @@ html {
 	filter: blur(1px);
 }
 
+.navbar {
+	padding: 0;
+	position: absolute;
+	top: 50px;
+	margin: 0;
+	left: 0;
+	width: 100%;
+}
+
+.navbar ul {
+	list-style-type: none;
+	margin: auto;
+	width: 60%;
+}
+
+.navbar ul li {
+	display: inline;
+	float: left;
+	width: 25%;
+}
+
+.navbar ul li a {
+	display: block;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+.navbar ul li a:hover {
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+.header {
+	margin: 3rem auto;
+	padding: 0 1rem;
+	max-width: 950px;
+}
+
+.content {
+	margin: 3rem auto;
+	padding: 0 1rem;
+	max-width: 650px;
+}
+
+.filters input {
+	left: 0px;
+	height: 16px;
+	max-width: 50%;
+}
+.filters select {
+	height: 22px;
+}
+
 .listfeature {
 	max-height: 100px;
 }
@@ -35,25 +90,4 @@ a.listlink:hover {
 }
 a.listlink:active {
 	color: blue;
-}
-
-.filters input {
-	left: 0px;
-	height: 16px;
-	max-width: 50%;
-}
-.filters select {
-	height: 22px;
-}
-
-.header {
-	margin: 3rem auto;
-	padding: 0 1rem;
-	max-width: 950px;
-}
-
-.content {
-	margin: 3rem auto;
-	padding: 0 1rem;
-	max-width: 650px;
 }
