@@ -1,5 +1,5 @@
 ---
-slug: "/transcriptions/straight_no_chaser"
+slug: "/music/transcriptions/straight_no_chaser"
 date: "2020-03-29"
 title: "Straight No Chaser - Chet Baker's Solo"
 featuredImage: ../images/chet.png

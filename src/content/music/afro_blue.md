@@ -1,5 +1,5 @@
 ---
-slug: "/transcriptions/afro_blue"
+slug: "/music/transcriptions/afro_blue"
 date: "2020-05-25"
 title: "Afro Blue - Paul Horn (Flute) and Emil Richards (Marimba)"
 featuredImage: ../images/afro_blue.jpg

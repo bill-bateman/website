@@ -29,14 +29,47 @@ function FilterPosts(props) {
 		}
 	}
 
-	const Options = props.categories.map(v => <option key={v} value={v}>{v}</option>)
-	
+	function createAndAddOption(elem, k) {
+		var opt = document.createElement('option');
+		opt.setAttribute('key', k);
+		opt.setAttribute('value', k);
+		opt.innerText = k;
+		elem.appendChild(opt);
+	}
+
+	function changeCategory() {
+		//remove subcategory options
+		var subelem = document.getElementById('subcategoryFilterSelect');
+		while (subelem.firstChild) {
+			subelem.removeChild(subelem.lastChild);
+		}
+
+		//add subcategory options based on category
+		var category_filter = document.getElementById('categoryFilterSelect').value.toLowerCase();
+		if (category_filter === 'all') {
+			createAndAddOption(subelem, '-select category-');
+		} else {	
+			createAndAddOption(subelem, 'all');
+			if (category_filter in props.subcategories) {
+				for (var i=0; i<props.subcategories[category_filter].length; i++) {
+					createAndAddOption(subelem, props.subcategories[category_filter][i]);
+				}
+			}
+		}
+
+		filter()
+	}
+
+	const CategoryOptions = props.categories.map(v => <option key={v} value={v}>{v}</option>)
 	return (<>
 		<div className="filters">
 			<input type="text" id="titleFilterText" onKeyUp={filter} placeholder="Search for post title..."/>
-			<select id="categoryFilterSelect" onChange={filter}>
+			<select id="categoryFilterSelect" onChange={changeCategory}>
 				<option key="all" value="all">all</option>
-				{Options}
+				{CategoryOptions}
+			</select>
+			<select id="subcategoryFilterSelect" onChange={filter}>
+				<option key="-select category-" value="-select category-">-select category</option> 
 			</select>
 		</div>
 		{props.children}

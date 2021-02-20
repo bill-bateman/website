@@ -38,13 +38,12 @@ a.listlink:active {
 }
 
 .filters input {
+	left: 0px;
 	height: 16px;
-	width: 79%;
+	max-width: 50%;
 }
 .filters select {
-	float: right;
 	height: 22px;
-	width: 19%;
 }
 
 .header {

@@ -1,5 +1,5 @@
 ---
-slug: "/blog/test"
+slug: "/blog/general/test"
 date: "2021-01-31"
 title: "Blog Test"
 featuredImage: ../images/banner.jpeg
