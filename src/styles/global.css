@@ -125,3 +125,16 @@ a.listlink:hover {
 a.listlink:active {
 	color: blue;
 }
+
+ul.nobullets {
+	list-style-type: none;
+	padding: 0px;
+}
+
+.imagecaption {
+	text-align: center;
+	font-size: smaller;
+	color: grey;
+	margin-top: 0px;
+	font-style: italic;
+}

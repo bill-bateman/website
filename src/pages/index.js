@@ -11,7 +11,7 @@ export default function Home() {
         I use this site for a variety of things, including: resume, blog posts, solo transcriptions, explorations of different computer science topics, and notes.
       </p>
       <img width="100%" alt="Olomana Trail" src={olomana} />
-      <p style={{textAlign:"center", fontSize:"smaller", color:"grey", marginTop:"0px"}}><i>Third peak of the Olomana Trail.</i></p>
+      <p className="imagecaption">Third peak of the Olomana Trail.</p>
     </Layout>
   );
 }
