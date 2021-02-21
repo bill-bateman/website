@@ -1,11 +1,17 @@
 import React from "react"
 import Layout from "../components/layout"
+import olomana from "../content/images/olomana.png"
 
 export default function Home() {
   return (
-    <Layout title="Bill's Blog" subtitle="I'm Bill">
-      <h1>Hello Gatsby!</h1>
-      <p>What a world.</p>
+    <Layout title="Bill Bateman" subtitle="Personal Website">
+      <p>
+        Welcome to my website.
+        <br /><br />
+        I use this site for a variety of things, including: resume, blog posts, solo transcriptions, explorations of different computer science topics, and notes.
+      </p>
+      <img width="100%" alt="Olomana Trail" src={olomana} />
+      <p style={{textAlign:"center", fontSize:"smaller", color:"grey", marginTop:"0px"}}><i>Third peak of the Olomana Trail.</i></p>
     </Layout>
   );
 }

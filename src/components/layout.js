@@ -13,9 +13,9 @@ function NavBar() {
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/posts">Posts</a></li>
-			<li><a href="/rss.xml">RSS</a></li>
-			<li><a href="/about">About</a></li>
 			<li><a href="/resume">Resume</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/rss.xml">RSS</a></li>
 		</ul>
 	</div>);
 }
