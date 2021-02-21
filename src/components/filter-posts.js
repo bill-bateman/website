@@ -44,7 +44,7 @@ function FilterPosts(props) {
 		elem.appendChild(opt);
 	}
 
-	function changeCategory() {
+	function updateSubcategoryOptions() {
 		//remove subcategory options
 		var subelem = document.getElementById('subcategoryFilterSelect');
 		while (subelem.firstChild) {
@@ -57,21 +57,52 @@ function FilterPosts(props) {
 			createAndAddOption(subelem, '-select category-');
 		} else {	
 			createAndAddOption(subelem, 'all');
-			if (category_filter in props.subcategories) {
-				for (var i=0; i<props.subcategories[category_filter].length; i++) {
-					createAndAddOption(subelem, props.subcategories[category_filter][i]);
+			if (category_filter in props.subcategoryDict) {
+				for (var i=0; i<props.subcategoryDict[category_filter].length; i++) {
+					createAndAddOption(subelem, props.subcategoryDict[category_filter][i]);
 				}
 			}
 		}
-
-		filter()
 	}
+
+	function onChangeCategory() {
+		updateSubcategoryOptions();
+		filter();
+	}
+
+	function getFilterParamsFromGetParams() {
+		const paramSet = new Set(['category', 'subcategory']);
+		var result = {}, tmp = [];
+		window.location.search.substr(1).split("&").forEach(function (item) {
+			tmp = item.split("=");
+			if (paramSet.has(tmp[0])) {
+				result[tmp[0]] = tmp[1];
+			}
+		})
+		return result;
+	}
+
+	React.useEffect(() => {
+		//check for get params for filtering
+		var params = getFilterParamsFromGetParams();
+		if ('category' in params && params['category'] in props.subcategoryDict) {
+			//set category
+			document.getElementById('categoryFilterSelect').value = params['category'];
+			updateSubcategoryOptions();
+
+			if ('subcategory' in params && props.subcategoryDict[params['category']].includes(params['subcategory'])) {
+				//set subcategory
+				document.getElementById('subcategoryFilterSelect').value = params['subcategory'];
+			}
+			filter();
+		}
+	}, []); //gets called when the component is mounted
 
 	const CategoryOptions = props.categories.map(v => <option key={v} value={v}>{v}</option>)
 	return (<>
 		<div className="filters">
 			<input type="text" id="titleFilterText" onKeyUp={filter} placeholder="Search for post title..."/>
-			<select id="categoryFilterSelect" onChange={changeCategory}>
+			<select id="categoryFilterSelect" onChange={onChangeCategory}>
 				<option key="all" value="all">all</option>
 				{CategoryOptions}
 			</select>

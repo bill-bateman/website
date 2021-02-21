@@ -27,7 +27,7 @@ const IndexPage = ({
   }
   //render
   return <Layout title="Posts" subtitle="Sorted by date">
-    <FilterPosts categories={Categories} subcategories={subcat_dict}>
+    <FilterPosts categories={Categories} subcategoryDict={subcat_dict}>
       {Posts}
     </FilterPosts>
   </Layout>
