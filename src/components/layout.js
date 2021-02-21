@@ -27,6 +27,17 @@ function Header(props) {
 	</div>);
 }
 
+function Footer() {
+	return (<div className="footer">
+		<hr />
+		<ul>
+			<li><p style={{textAlign:"left"}}>© 2021 Bill Bateman</p></li>
+			<li><p style={{textAlign:"center"}}>Website Created with <a href="https://gatsbyjs.com">Gatsby</a></p></li>
+			<li><p style={{textAlign:"right"}}><a href="https://github.com/bill-bateman/website">Website Source Code</a></p></li>
+		</ul>
+	</div>);
+}
+
 export default function Layout(props) {
   return (<>
   	<Banner />
@@ -34,5 +45,6 @@ export default function Layout(props) {
     <div className="content">
     	{props.children}
     </div>
+    <Footer />
   </>)
 }

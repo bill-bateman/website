@@ -18,19 +18,16 @@ html {
 	left: 0;
 	width: 100%;
 }
-
 .navbar ul {
 	list-style-type: none;
 	margin: auto;
 	width: 60%;
 }
-
 .navbar ul li {
 	display: inline;
 	float: left;
 	width: 20%;
 }
-
 .navbar ul li a {
 	display: block;
 	padding: 14px 16px;
@@ -38,7 +35,6 @@ html {
 	text-decoration: none;
 	color: black;
 }
-
 .navbar ul li a:hover {
 	text-decoration: underline;
 	text-decoration-color: black;
@@ -54,6 +50,36 @@ html {
 	margin: 3rem auto;
 	padding: 0 1rem;
 	max-width: 650px;
+}
+
+.footer {
+	margin: 3rem auto;
+	padding: 0 1rem;
+	max-width: 650px;
+}
+.footer hr {
+	border: 1px solid grey;
+	border-bottom-width: 0px;
+}
+.footer ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.footer ul li {
+	display: inline;
+	float: left;
+	width: 33%;
+}
+.footer ul li p {
+	display: block;
+	padding: 0px;
+	margin: 0px;
+	color: grey;
+	font-size: smaller;
+}
+.footer ul li a {
+	color: grey;
 }
 
 .filters input {
