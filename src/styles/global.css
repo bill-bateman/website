@@ -69,12 +69,20 @@ html {
 	max-height: 100px;
 }
 
-.listtext {
+.listinfo {
 	text-align: left;
 	margin: 0;
+	font-size: small;
+	font-weight: lighter;
 }
-.listtext span {
+.listinfo span {
 	float: right;
+}
+.listtext {
+	font-weight: bold;
+	font-size: large;
+	text-align: left;
+	margin: 0;
 }
 .listlink {
 	text-decoration: none;
