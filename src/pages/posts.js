@@ -10,12 +10,13 @@ const IndexPage = ({
   },
 }) => {
   //get all posts
-  const Posts = edges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length > 3); //filter out things like resume.md
+  const Posts = FilteredEdges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   //get all categories (first part of slug)
-  var Categories = [...new Set(edges.map(edge => edge.node.frontmatter.slug.split('/')[1]))]
+  var Categories = [...new Set(FilteredEdges.map(edge => edge.node.frontmatter.slug.split('/')[1]))]
   Categories.sort()
   //get all subcategories (second part of slug)
-  var Subcategories = [...new Set(edges.map(edge => edge.node.frontmatter.slug.split('/')).map(edges => edges[1]+"/"+edges[2]))]
+  var Subcategories = [...new Set(FilteredEdges.map(edge => edge.node.frontmatter.slug.split('/')).map(edge => edge[1]+"/"+edge[2]))]
   Subcategories.sort()
   //create a map from category to subcategory
   var subcat_dict = {};

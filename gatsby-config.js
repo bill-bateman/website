@@ -19,6 +19,20 @@ module.exports = {
     			name: `music`,
     		},
     	},
+		{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/tech/`,
+    			name: `tech`,
+    		},
+    	},
+    	{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/resume/`,
+    			name: `resume`,
+    		},
+    	},
 	    {
 	      resolve: `gatsby-source-filesystem`,
 	      options: {

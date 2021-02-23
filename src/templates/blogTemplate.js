@@ -26,12 +26,21 @@ export default function Template({
   const { frontmatter, html } = markdownRemark
   let html2 = edit_pdf_path(html, allFile);
 
-  return (
-    <Layout title={frontmatter.title} subtitle={frontmatter.date}>
-      <Img fluid={frontmatter.featuredImage.childImageSharp.fluid} />
-      <div dangerouslySetInnerHTML={{ __html: html2 }}></div>
-    </Layout>
-  )
+  console.log(frontmatter.featuredImage);
+  if (frontmatter.featuredImage === null) {
+    return (
+      <Layout title={frontmatter.title} subtitle={frontmatter.date}>
+        <div dangerouslySetInnerHTML={{ __html: html2 }}></div>
+      </Layout>
+    )
+  } else {
+    return (
+      <Layout title={frontmatter.title} subtitle={frontmatter.date}>
+        <Img fluid={frontmatter.featuredImage.childImageSharp.fluid} />
+        <div dangerouslySetInnerHTML={{ __html: html2 }}></div>
+      </Layout>
+    )
+  }
 }
 export const pageQuery = graphql`
   query($slug: String!) {
