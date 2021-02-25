@@ -11,6 +11,6 @@ Audio available on [youtube](https://www.youtube.com/watch?v=Mr3RYGrVkaY).
 
 MuseScore file available [here](https://musescore.com/user/14974706/scores/6063797).
 
-[Transcription in C](straight_no_chaser_c.pdf)
+[Transcription in C](/straight_no_chaser_c.pdf)
 
-[Transcription in Bb](straight_no_chaser_bb.pdf)
+[Transcription in Bb](/straight_no_chaser_bb.pdf)

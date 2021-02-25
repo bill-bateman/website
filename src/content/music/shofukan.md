@@ -13,6 +13,6 @@ So I just wrote it down.
 
 The song is Shofukan, by Snarky Puppy, and is off their 2014 album _We Like It Here_.
 
-[Transcription in C](shofukan_c.pdf)
+[Transcription in C](/shofukan_c.pdf)
 
-[Transcription in Bb](shofukan_bb.pdf)
+[Transcription in Bb](/shofukan_bb.pdf)

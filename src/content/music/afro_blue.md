@@ -15,14 +15,14 @@ Also, if you haven't heard the Robert Glasper / Erykah Badu version, I definitel
 
 MuseScore file available [here](https://musescore.com/user/14974706/scores/6181413).
 
-[Transcription in C](afro_blue_flute_c.pdf)
+[Transcription in C](/afro_blue_flute_c.pdf)
 
-[Transcription in Bb](afro_blue_flute_bb.pdf)
+[Transcription in Bb](/afro_blue_flute_bb.pdf)
 
 ### Marimba
 
 MuseScore file available [here](https://musescore.com/user/14974706/scores/6181408).
 
-[Transcription in C](afro_blue_marimba_c.pdf)
+[Transcription in C](/afro_blue_marimba_c.pdf)
 
-[Transcription in Bb](afro_blue_marimba_bb.pdf)
+[Transcription in Bb](/afro_blue_marimba_bb.pdf)
