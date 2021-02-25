@@ -1,5 +1,5 @@
 ---
-slug: "/tech/games/chicken_squash"
+slug: "/games/chicken_squash"
 date: "2020-01-31"
 title: "Chicken Squash"
 featuredImage: ../images/chicken_squash.png

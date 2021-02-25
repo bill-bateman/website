@@ -10,25 +10,14 @@ const IndexPage = ({
   },
 }) => {
   //get all posts
-  const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length > 3); //filter out things like resume.md
+  const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length > 2); //filter out things like resume.md
   const Posts = FilteredEdges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   //get all categories (first part of slug)
   var Categories = [...new Set(FilteredEdges.map(edge => edge.node.frontmatter.slug.split('/')[1]))]
   Categories.sort()
-  //get all subcategories (second part of slug)
-  var Subcategories = [...new Set(FilteredEdges.map(edge => edge.node.frontmatter.slug.split('/')).map(edge => edge[1]+"/"+edge[2]))]
-  Subcategories.sort()
-  //create a map from category to subcategory
-  var subcat_dict = {};
-  for (var i=0; i<Categories.length; i++) {
-    subcat_dict[Categories[i]] = [];
-  }
-  for (i=0; i<Subcategories.length; i++) {
-    subcat_dict[Subcategories[i].split('/')[0]].push(Subcategories[i].split('/')[1]);
-  }
   //render
   return <Layout title="Posts" subtitle="Sorted by date">
-    <FilterPosts categories={Categories} subcategoryDict={subcat_dict}>
+    <FilterPosts categories={Categories}>
       {Posts}
     </FilterPosts>
   </Layout>

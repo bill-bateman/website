@@ -1,5 +1,5 @@
 ---
-slug: "/tech/games/robot_boy"
+slug: "/games/robot_boy"
 date: "2017-01-31"
 title: "Adventures of Robot Boy"
 featuredImage: ../images/robot_boy.png

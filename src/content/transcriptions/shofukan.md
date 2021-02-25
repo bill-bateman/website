@@ -1,5 +1,5 @@
 ---
-slug: "/music/transcriptions/shofukan"
+slug: "/transcriptions/shofukan"
 date: "2020-02-05"
 title: "Shofukan - Justin Stanton's Solo"
 featuredImage: ../images/stanton.png

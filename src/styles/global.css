@@ -85,9 +85,11 @@ html {
 .filters input {
 	left: 0px;
 	height: 16px;
-	max-width: 50%;
+	width: 79%;
 }
 .filters select {
+	float: right;
+	width: 19%;
 	height: 22px;
 }
 

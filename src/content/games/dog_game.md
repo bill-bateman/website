@@ -1,5 +1,5 @@
 ---
-slug: "/tech/games/dog_game"
+slug: "/games/dog_game"
 date: "2019-01-31"
 title: "DOG GAME"
 featuredImage: ../images/dog_game.png

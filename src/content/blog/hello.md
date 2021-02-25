@@ -1,5 +1,5 @@
 ---
-slug: "/blog/general/hello"
+slug: "/blog/hello"
 date: "2021-02-21"
 title: "Hello World"
 featuredImage: ../images/mountain.jpeg

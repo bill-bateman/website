@@ -1,5 +1,5 @@
 ---
-slug: "/tech/games/space_wars"
+slug: "/games/space_wars"
 date: "2015-12-06"
 title: "Space Wars - Verilog FPGA Project"
 featuredImage: ../images/space_wars_gameover.png
