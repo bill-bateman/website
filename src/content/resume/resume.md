@@ -118,7 +118,7 @@ _B.ASc. Computer Engineering with High Honours_
 
 # Projects
 
-Please refer to the [tech category](/posts/?category=tech) for additional projects.
+Please refer to my [posts](/posts/) for additional projects, especially [computers](/posts/?category=computers) and [games](/posts/?category=games).
 
 ## Capstone
 _Sept 2018 - Apr 2019_
