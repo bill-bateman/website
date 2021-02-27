@@ -26,6 +26,13 @@ module.exports = {
     			name: `games`,
     		},
     	},
+		{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/computers/`,
+    			name: `computers`,
+    		},
+    	},
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {
