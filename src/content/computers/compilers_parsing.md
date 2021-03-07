@@ -9,6 +9,16 @@ This is part 2 of my notes from the University of Toronto course CSC467: Compile
 
 Find [part 1 here](/computers/compilers_part_1) and [part 3 here](/computers/compilers_part_3).
 
+Key concepts of parsing / syntax analysis:
+- Context Free Grammars
+- Parse Trees
+- Left-Recursive Grammars
+- Recursive Descent Parsing
+- Top-Down Parsing
+- Bottom-Up Parsing (LR(0) and SLR)
+
+---
+
 The input to the parsing stage is a sequence of tokens, as defined by our lexer. The output from this stage is a _syntax tree_ of the program.
 
 # Context Free Grammars (CFGs)

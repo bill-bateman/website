@@ -9,6 +9,14 @@ This is part 1 of my notes from the University of Toronto course CSC467: Compile
 
 Find [part 2 here](/computers/compilers_part_2).
 
+Key concepts of lexical analysis:
+- Tokenization
+- Regular Expressions
+- Definite Finite Automata
+- Non-definite Finite Automata
+
+---
+
 The first process that occurs in any compiler is lexical analysis, or partitioning the program into tokens. In general, a token object has:
 - token type
 - pattern
