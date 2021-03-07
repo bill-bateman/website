@@ -1,5 +1,5 @@
 ---
-slug: "/computers/compilers_part_2"
+slug: "/computers/compilers/parsing"
 date: "2021-02-27"
 title: "Compilers Part 2: Parsing"
 featuredImage: ../images/partial_lr_automata.png
@@ -7,7 +7,7 @@ featuredImage: ../images/partial_lr_automata.png
 
 This is part 2 of my notes from the University of Toronto course CSC467: Compilers. This section covers parsing.
 
-Find [part 1 here](/computers/compilers_part_1) and [part 3 here](/computers/compilers_part_3).
+Find [part 1 (lexical analysis) here](/computers/compilers/lexical_analysis) and [part 3 (semantic analysis) here](/computers/compilers/semantic_analysis).
 
 Key concepts of parsing / syntax analysis:
 - Context Free Grammars

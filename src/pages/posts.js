@@ -10,7 +10,7 @@ const IndexPage = ({
   },
 }) => {
   //get all posts
-  const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length > 2); //filter out things like resume.md
+  const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length === 3); //filter out things like resume.md, and notes, that have more or less than 2 slashes in the slug
   const Posts = FilteredEdges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   //get all categories (first part of slug)
   var Categories = [...new Set(FilteredEdges.map(edge => edge.node.frontmatter.slug.split('/')[1]))]

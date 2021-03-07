@@ -1,5 +1,5 @@
 ---
-slug: "/computers/compilers_part_3"
+slug: "/computers/compilers/semantic_analysis"
 date: "2021-02-27"
 title: "Compilers Part 3: Semantic Analysis"
 featuredImage: ../images/ast.png
@@ -7,7 +7,7 @@ featuredImage: ../images/ast.png
 
 This is part 3 of my notes from the University of Toronto course CSC467: Compilers. This section covers semantic analysis.
 
-Find [part 2 here](/computers/compilers_part_2) and [part 4 here](/computers/compilers_part_4).
+Find [part 2 (parsing) here](/computers/compilers/parsing) and [part 4 (optimization) here](/computers/compilers/optimization).
 
 Key concepts of semantic analysis:
 - Abstract Syntax Tree
@@ -261,9 +261,11 @@ Finally, we extend our proof system to define **well-formed** statements.
  T is valid type in S
  --------------------
    S |- WF(T name;)
-
+```
+or
+```
  T is valid type in S
-  S |- expr: T`, T~T`
+  S |- expr: T', T~T'
  --------------------
  S |- WF(T name=expr;)
 ```

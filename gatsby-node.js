@@ -39,7 +39,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 //creates an RSS feed at /rss.xml
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `MarkdownRemark` && node.frontmatter.slug.split('/').length === 3) { //filter out things like resume.md and notes that don't have 2 slashes in the slug
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,

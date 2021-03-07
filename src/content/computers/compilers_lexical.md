@@ -1,5 +1,5 @@
 ---
-slug: "/computers/compilers_part_1"
+slug: "/computers/compilers/lexical_analysis"
 date: "2021-02-26"
 title: "Compilers Part 1: Lexical Analysis"
 featuredImage: ../images/float_dfa.png
@@ -7,7 +7,7 @@ featuredImage: ../images/float_dfa.png
 
 This is part 1 of my notes from the University of Toronto course CSC467: Compilers. This section covers Lexical Analysis, or Tokenizing.
 
-Find [part 2 here](/computers/compilers_part_2).
+Find [part 2 (parsing) here](/computers/compilers/parsing).
 
 Key concepts of lexical analysis:
 - Tokenization
