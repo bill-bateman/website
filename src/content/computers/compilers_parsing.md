@@ -5,7 +5,7 @@ title: "Compilers Part 2: Parsing"
 featuredImage: ../images/partial_lr_automata.png
 ---
 
-This is part 2 of my notes from the University of Toronto course CSC467: Compilers. This section covers parsing.
+This is part 2 of [my notes](/computers/compilers) from the University of Toronto course CSC467: Compilers. This section covers parsing.
 
 Find [part 1 (lexical analysis) here](/computers/compilers/lexical_analysis) and [part 3 (semantic analysis) here](/computers/compilers/semantic_analysis).
 

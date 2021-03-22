@@ -5,7 +5,7 @@ title: "Compilers Part 3: Semantic Analysis"
 featuredImage: ../images/ast.png
 ---
 
-This is part 3 of my notes from the University of Toronto course CSC467: Compilers. This section covers semantic analysis.
+This is part 3 of [my notes](/computers/compilers) the University of Toronto course CSC467: Compilers. This section covers semantic analysis.
 
 Find [part 2 (parsing) here](/computers/compilers/parsing) and [part 4 (optimization) here](/computers/compilers/optimization).
 

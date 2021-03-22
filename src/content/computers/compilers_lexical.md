@@ -5,7 +5,7 @@ title: "Compilers Part 1: Lexical Analysis"
 featuredImage: ../images/float_dfa.png
 ---
 
-This is part 1 of my notes from the University of Toronto course CSC467: Compilers. This section covers Lexical Analysis, or Tokenizing.
+This is part 1 of [my notes](/computers/compilers) from the University of Toronto course CSC467: Compilers. This section covers Lexical Analysis, or Tokenizing.
 
 Find [part 2 (parsing) here](/computers/compilers/parsing).
 
