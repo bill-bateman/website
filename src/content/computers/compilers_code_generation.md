@@ -1,6 +1,6 @@
 ---
 slug: "/computers/compilers/code_generation"
-date: "2021-02-27"
+date: "2021-03-21"
 title: "Compilers Part 5: Code Generation"
 featuredImage: ../images/ir.png
 ---

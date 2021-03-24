@@ -1,6 +1,6 @@
 ---
 slug: "/computers/compilers/semantic_analysis"
-date: "2021-02-27"
+date: "2021-03-21"
 title: "Compilers Part 3: Semantic Analysis"
 featuredImage: ../images/ast.png
 ---

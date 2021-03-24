@@ -1,6 +1,6 @@
 ---
 slug: "/computers/compilers/lexical_analysis"
-date: "2021-02-26"
+date: "2021-03-21"
 title: "Compilers Part 1: Lexical Analysis"
 featuredImage: ../images/float_dfa.png
 ---

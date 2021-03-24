@@ -1,13 +1,13 @@
 ---
 slug: "/computers/compilers/optimization"
-date: "2021-02-27"
+date: "2021-03-21"
 title: "Compilers Part 4: Optimization"
 featuredImage: ../images/ir.png
 ---
 
 This is part 4 of [my notes](/computers/compilers) from the University of Toronto course CSC467: Compilers. This section covers semantic analysis.
 
-Find [part 3 (semantics) here](/computers/compilers/semantic) and [part 5 (code generation) here](/computers/compilers/code_generation).
+Find [part 3 (semantics) here](/computers/compilers/semantic_analysis) and [part 5 (code generation) here](/computers/compilers/code_generation).
 
 Key concepts of optimization:
 - Intermediate Representation (IR)
