@@ -11,4 +11,4 @@ This is the outline of my notes from the University of Toronto course CSC467: Co
 2. [**Parsing.**](/computers/compilers/parsing) Creating syntax tree, defining grammar.
 3. [**Semantic Analysis.**](/computers/compilers/semantic_analysis) Extracting meaning from syntax tree.
 4. [**Optimization.**](/computers/compilers/optimization) Modify to improve performance.
-5. [**Code Generation.**](/computers/code_generation) Produce assembly or byte code.
+5. [**Code Generation.**](/computers/compilers/code_generation) Produce assembly or byte code.

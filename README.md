@@ -2,7 +2,7 @@
 
 Personal website using [Gatsby](https://www.gatsbyjs.com).
 
-Not currently published anywhere.
+Hosted at https://bill.batemanzhou.com.
 
 # Licensing
 

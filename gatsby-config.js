@@ -1,10 +1,27 @@
 module.exports = {
 	siteMetadata: { //for rss feed
 		title: `Bill's Blog`,
+		author: `Bill`,
 		description: `Posts by Bill`,
 		siteUrl: `https://bill.batemanzhou.com`,
 	},
     plugins: [
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: `Bill's Blog`,
+				description: `Posts by Bill`,
+				icon: `src/content/images/favicon.png`,
+				lang: `en`,
+				start_url: `/`,
+			}
+		},
+		{
+			resolve: `gatsby-plugin-goatcounter`,
+			options: {
+				code: `batemanzhouanalytics`,
+			}
+		},
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {

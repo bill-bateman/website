@@ -29,24 +29,13 @@ function FilterPosts(props) {
 		}
 	}
 
-	function getFilterParamsFromGetParams() {
-		const paramSet = new Set(['category']);
-		var result = {}, tmp = [];
-		window.location.search.substr(1).split("&").forEach(function (item) {
-			tmp = item.split("=");
-			if (paramSet.has(tmp[0])) {
-				result[tmp[0]] = tmp[1];
-			}
-		})
-		return result;
-	}
-
 	React.useEffect(() => {
 		//check for get params for filtering
-		var params = getFilterParamsFromGetParams();
-		if ('category' in params && params['category'] in props.subcategoryDict) {
+		const queryParams = new URLSearchParams(window.location.search);
+		let c = queryParams.get('category');
+		if (c!==null && props.categories.includes(c)) {
 			//set category
-			document.getElementById('categoryFilterSelect').value = params['category'];
+			document.getElementById('categoryFilterSelect').value = c;
 			filter();
 		}
 	}, []); //gets called when the component is mounted
