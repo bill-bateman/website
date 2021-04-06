@@ -43,11 +43,12 @@ function FilterPosts(props) {
 	const CategoryOptions = props.categories.map(v => <option key={v} value={v}>{v}</option>)
 	return (<>
 		<div className="filters">
-			<input type="text" id="titleFilterText" onKeyUp={filter} placeholder="Search for post title..."/>
 			<select id="categoryFilterSelect" onChange={filter}>
 				<option key="all" value="all">all</option>
 				{CategoryOptions}
 			</select>
+			<input type="text" id="titleFilterText" onKeyUp={filter} placeholder="Search for post title..."/>
+			<br />
 		</div>
 		{props.children}
 	</>);

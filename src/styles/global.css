@@ -21,7 +21,8 @@ html {
 .navbar ul {
 	list-style-type: none;
 	margin: auto;
-	width: 60%;
+	padding: 0;
+	max-width: 1000px;
 }
 .navbar ul li {
 	display: inline;
@@ -30,7 +31,7 @@ html {
 }
 .navbar ul li a {
 	display: block;
-	padding: 14px 16px;
+	padding: 14px 0;
 	text-align: center;
 	text-decoration: none;
 	color: black;
@@ -83,14 +84,16 @@ html {
 }
 
 .filters input {
-	left: 0px;
+	float: left;
+	padding: 0;
 	height: 16px;
 	width: 79%;
 }
 .filters select {
 	float: right;
+	padding: 0;
 	width: 19%;
-	height: 22px;
+	height: 18px;
 }
 
 .listfeature {
