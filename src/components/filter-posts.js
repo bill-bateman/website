@@ -3,7 +3,7 @@ import React from "react"
 function FilterPosts(props) {
 
 	function postLinkToTitle(elem) {
-		return elem.getElementsByTagName('p')[0].innerText.split("\n")[0];
+		return elem.getElementsByTagName('p')[1].innerText.split("\n")[0];
 	}
 	function postLinkToCategory(elem) {
 		return elem.getAttribute('data-category');
