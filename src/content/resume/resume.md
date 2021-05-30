@@ -1,6 +1,6 @@
 ---
 slug: "/resume"
-date: "2021-02-21"
+date: "2021-05-30"
 title: "Resume"
 ---
 
@@ -9,45 +9,33 @@ title: "Resume"
 ---
 
 ## **_BlueCat Networks_**
-### **Software Engineer**
+_Software Engineer II (May 2021 - Current. Remote, Canada)_
 
-_June 2019 - Current_
+_Software Engineer (June 2019 - April 2021. Toronto, ON / Remote, Canada)_
 
-_Toronto, ON / Remote Canada_
+_Software Developer Co-op (Jan 2018 - Aug 2018. Toronto, ON)_
 
-**Description**
-- Working in a small research team implementing a variety of prototypes for a DNS based product.
-- Free to work in a breadth of areas, and at times called upon for development or time-boxed investigations.
-- Built a datalake to replace ElasticSearch Service, greatly reducing cost and increasing analytics capabilities. Data is stored in AWS S3, and queried using Trino.
-- Increased product capabilities by writing Flink jobs to analyze DNS data. Improved detection of DGAs (Domain Generated Algorithms) from roughly 25% to 95% with Machine Learning. Adding detection of typosquat queries.
-- Prototyped a highly customisable DNS proxy based on a custom DSL that compiles into Rust or WebAssembly. Informed the next version of the DNS proxy, which was rewritten from Java to Rust, and uses a plugin-based architecture.
+- Member of a small team within the Research Team of a networking company specializing in DDI (DNS, DHCP, IPAM) - specifically we focus on the company's DNS proxy. Free to work in a breadth of areas to prototype and explore new directions. At times called upon for development work or time-boxed investigations.
+- Increasing user impact by adding analytic capabilities to the data platform.
+  - Leading investigation into detecting malicious DGAs (Domain Generation Algorithms). By leveraging Machine Learning, improved detection from roughly 25% to 95%. Wrote script to generate PDF reports for alerting. Contributing to productization.
+  - Also researching other potentially malicious activity, including typosquat queries, fast fluxing, and beaconing. 
+  - Investigated network data represented in a variety of ways (e.g. graph database).
+- Contributed to improvements to the data pipeline.
+  - Performed scale testing on an ELK (ElasticSearch - Logstash - Kibana) deployment.
+  - Prototyped custom cloud-based index and data store.
+  - Built a datalake to replace ElasticSearch Service, greatly reducing cost and increasing analytics capabilities. Data is stored in AWS S3, and queried using Trino.
+- Prototyped a highly customizable DNS proxy based on a custom DSL that compiles into Rust or WebAssembly. Informed the next version of DNS proxy, which was rewritten from Java to Rust, and uses a plugin-based architecture.
 - Assisted another team with learning Rust and contributing to the open source project Vector. Added support for http and dnstap sources.
 - Attended AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
 
 **Languages / Tools:**
-Rust, Python, Java, Flink, Vector, Tensorflow/Keras, Trino, AWS (Lambda, Firehose, S3)
+Rust, Python, Java, Flink, Vector, Tensorflow/Keras, Trino, AWS (Lambda, Firehose, S3, Kinesis, ElasticSearch Service)
 
-### **Software Developer Co-op**
-
-_Jan 2018 - Aug 2018_
-
-_Toronto, ON_
-
-**Description**
-- Performed scale testing on ElasticSearch, and prototyped an alternative cloud-based data store.
-- Investigated network data represented in a variety of ways (e.g. graph database).
-
-**Languages / Tools:**
-Java, Python, AWS (S3, Lambda, Kinesis, ElasticSearch Service)
+--------
 
 ## **_Ranch Systems_**
-### **Summer Intern**
+_Summer Intern (May 2017 - Aug 2017. Novato, CA)_
 
-_May 2017 - Aug 2017_
-
-_Novato, CA_
-
-**Description**
 - Integrated new sensors in various protocols including flow meters, VFD controllers, radios, and cameras.
 - Prototyped OCR (Optical Character Recognition) software to automate reading of flow meter displays.
 
@@ -59,11 +47,8 @@ Company's Custom DSL (for sensor integration); C++, OpenCV, Google Tesseract (fo
 ## **_University of Toronto_**
 ### **Summer Research Fellowship**
 
-_May 2016 - Aug 2016_
+_Summer Research Fellowship (May 2016 - Aug 2016. Toronto, ON)_
 
-_Toronto, ON_
-
-**Description**
 - Funded through NSERC USRA (Undergraduate Student Research Award) to work under Prof. Alberto Leon-Garcia.
 - Developed application for detection of anomalous behaviours in networks of VMs based on a Master's Thesis from Prof. Leon-Garcia's research group.
 - Worked with a team of summer students to develop a IoT application that monitored crowd movement based on WiFi traffic.
@@ -74,30 +59,17 @@ Scala, Apache Spark (for anomaly detection); Python, Raspberry Pi, Onion board, 
 ---
 
 ## **_Reinke Manufacturing_**
-### **Computer Engineering Intern**
+_Computer Engineering Intern (May 2015 - Aug 2015. Deshler, NE)_
 
-_May 2015 - Aug 2015_
-
-_Deshler, NE_
+_Engineering Assistant - Part Time (Aug 2013 - Aug 2014. Deshler, NE)_
 
 - Worked with an Embedded Software Engineer to develop improved on-board software for large irrigation equipment.
 - Interfaced with sensors, sprinklers, and GPS.
-
-**Languages / Tools:**
-C++, Qt/QML
-
-### **Engineering Assistant (Part Time)**
-
-_Aug 2013 - Aug 2014_
-
-_Deshler, NE_
-
-**Description**
 - Improved functionality and usability of software to control large irrigation equipment via radio
-- Owned features from customer interviews to development.
+- Owned features from customer interviews in the field to development.
 
 **Languages / Tools:**
-Visual Basic
+C++, Qt/QML, Visual Basic
 
 ---
 
