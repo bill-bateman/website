@@ -83,21 +83,25 @@ html {
 	color: grey;
 }
 
+div.filters {
+	height: 34px;
+}
+
 .filters input {
 	float: left;
 	padding: 0;
 	height: 16px;
-	width: 79%;
+	width: 78%;
 }
 .filters select {
 	float: right;
 	padding: 0;
-	width: 19%;
-	height: 18px;
+	width: 18%;
+	height: 34px;
 }
 
 .listfeature {
-	max-height: 150px;
+	max-height: 250px;
 }
 
 .listinfo {
