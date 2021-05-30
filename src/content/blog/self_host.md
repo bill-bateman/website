@@ -1,9 +1,9 @@
-```
+---
 slug: "/blog/self-host"
-date: "2021-05-05"
+date: "2021-05-30"
 title: "My Self Hosted Local Cloud"
-featuredImage: ../images/tmp.png
-```
+featuredImage: ../images/nextcloud.png
+---
 
 Local cloud might be a bit of an oxymoron, but it's not a bad way to describe what's going on here. Perhaps a more accurate phrase would be: self-hosted media server with backups and the ability to sync contacts and calendars and whatever else I decide to put on there. But that's a bit wordy.
 
@@ -13,7 +13,7 @@ Inspired by [this post by Marko Zivanovic](https://www.markozivanovic.com/screw-
 
 Previously, I had basically nothing. Important documents, treasured images, and my music library were spread out on different devices, with no security and only one backup to an external HDD. This is not a safe setup, especially since the HDD is already quite old.
 
-So, my first goal was to achieve some sort of data security, like by following the (3-2-1 rule)[https://en.wikipedia.org/wiki/Backup#Storage] (3 copies of the data, on 2 different types of storage, with 1 copy offsite).
+So, my first goal was to achieve some sort of data security, like by following the [3-2-1 rule](https://en.wikipedia.org/wiki/Backup#Storage) (3 copies of the data, on 2 different types of storage, with 1 copy offsite).
 
 My second goal was to have a convenient solution for listening to music, and syncing or giving access to my library across different devices. Not sure how much of an oddity this is, but I never got into music streaming (e.g. Spotify, Apple Music) due to both issues of artist compensation and not actually owning the music. Even though I spend more money, I listen to music so much I feel it's worth it.
 
@@ -23,7 +23,7 @@ My fourth goal was to do all this on my old laptop so that I don't have to pay m
 
 # Setup
 
-TODO: insert diagram
+![Self-hosting Diagram](../images/self_host.drawio.png)
 
 Note that this is a local access setup only. I have no way to access this from the outside world. If I were to set up remote access, I would either be very sure I had no vulnerabilities, or set up a VPN (e.g. [Wireguard](https://www.wireguard.com/)).
 
@@ -49,7 +49,7 @@ To fix this, and some other tagging problems (not properly recognizing some albu
 
 After all that, Ampache had my library properly, but I needed a way to play it. Ampache has it's own API, and also supports Subsonic, and several other ways of streaming media.
 
-Unfortunately, I haven't found a desktop client that I really like. I'm spread out across Mac, Windows, and Linux, but all of the clients I've looked at are either terrible or horribly outdated or both. Eventually I've settled on using (and hosting!) [Jamstash](https://github.com/tsquillario/Jamstash), which is an HTML5 Subsonic client that I like slightly better than Ampache's own web client. You can download music from Jamstash, but it doesn't offer a nice way to play downloaded music. Also, while streaming, there is quite a gap of time between songs (which I believe is Ampache's fault). However, it does a decent job, and I like the random album feature.
+I haven't found a desktop client that I really like. I'm spread out across Mac, Windows, and Linux, but all of the clients I've looked at are either not great or no longer maintained or both. Eventually I've settled on using (and self-hosting!) [Jamstash](https://github.com/tsquillario/Jamstash), which is an HTML5 Subsonic client that I like slightly better than Ampache's own web client. You can download music from Jamstash, but it doesn't offer a nice way to play downloaded music. My biggest gripe is that sometimes while streaming there is quite a gap of time between songs, but this could be due to my rather old laptop. However, it does a decent job, and I like the random album feature.
 
 For iOS, I've been trying out both play:Sub and Amperfy, and haven't yet chosen between them, although play:Sub does cost a small amount. Both allow you to download music to the cache, which is essential for me.
 
@@ -58,6 +58,8 @@ For iOS, I've been trying out both play:Sub and Amperfy, and haven't yet chosen 
 My only requirement here was to be able to stream videos to my TV. I had hoped to use [Jellyfin](https://jellyfin.org/), but unfortunately there is no client for my TV (Samsung has it's own OS called Tizen), although it is coming soon. You can see the repo for [jellyfin-tizen here](https://github.com/jellyfin/jellyfin-tizen). I tried manually installing it, but didn't manage to connect the TV to my computer and gave up pretty quickly.
 
 Until I retry or the official version is released, I'm using [Plex](https://www.plex.tv/). 
+
+My other option (which sounds very attractive) is to ditch the Samsung smart TV and power a dumb TV with a Raspberry Pi, or something similar.
 
 ## Laptop
 
