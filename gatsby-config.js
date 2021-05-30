@@ -16,12 +16,6 @@ module.exports = {
 				start_url: `/`,
 			}
 		},
-		{
-			resolve: `gatsby-plugin-goatcounter`,
-			options: {
-				code: `batemanzhouanalytics`,
-			}
-		},
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {

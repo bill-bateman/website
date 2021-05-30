@@ -38,8 +38,13 @@ function Footer() {
 	</div>);
 }
 
+function GoatCounter() {
+	return (<script data-goatcounter="https://batemanzhouanalytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>)
+}
+
 export default function Layout(props) {
   return (<>
+	<GoatCounter />
   	<Banner />
     <Header title={props.title} subtitle={props.subtitle}/>
     <div className="content">
