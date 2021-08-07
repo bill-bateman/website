@@ -1,0 +1,53 @@
+name: BuildAndDeploy
+
+on:
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: npm install -g gatsby-cli
+      
+      - name: Build
+        run: gatsby build
+      
+      - name: Deploy
+        env:
+          LOCAL_BUILD_DIRECTORY: public
+          DEPLOY_DIRECTORY_NAME: ${{ secrets.DEPLOY_DIR }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+          
+        run: |
+          const FtpDeploy = require("ftp-deploy")
+          const config = {
+            host: ${DEPLOY_HOST},
+            user: ${DEPLOY_USER},
+            password: ${DEPLOY_PASSWORD},
+            localRoot: `./${LOCAL_BUILD_DIRECTORY}`,
+            remoteRoot: `./${DEPLOY_DIRECTORY_NAME}`,
+            include: ["*", "**/*"]
+          }
+          const ftpDeploy = new FtpDeploy()
+          ftpDeploy.on("uploading", data => {
+            const { totalFilesCount, transferredFileCount, filename } = data
+            console.log(`${transferredFileCount} out of ${totalFilesCount} ${filename}`)
+          })
+          ftpDeploy.on("upload-error", data => {
+            console.log(data.err)
+            throw new Error("Upload FAILED")
+          })
+          ftpDeploy
+            .deploy(config)
+            .then(() => console.log(`Upload COMPLETED`))
