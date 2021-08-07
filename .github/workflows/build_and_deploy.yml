@@ -22,11 +22,18 @@ jobs:
       - name: Build
         run: gatsby build
       
+      - name: Setup SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy.key
+          chmod 600 ~/.ssh/deploy.key
+      
       - name: Deploy
         env:
           LOCAL_BUILD_DIRECTORY: public
           DEPLOY_DIRECTORY_NAME: ${{ secrets.DEPLOY_DIR }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-        run: ./.github/deploy.sh
+        run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy.key' ${LOCAL_BUILD_DIRECTORY} ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIRECTORY_NAME}
