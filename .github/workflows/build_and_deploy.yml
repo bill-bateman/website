@@ -32,7 +32,7 @@ jobs:
       
       - name: Deploy
         env:
-          LOCAL_BUILD_DIRECTORY: public
+          LOCAL_BUILD_DIRECTORY: public/
           DEPLOY_DIRECTORY_NAME: ${{ secrets.DEPLOY_DIR }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
