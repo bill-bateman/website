@@ -36,4 +36,4 @@ jobs:
           DEPLOY_DIRECTORY_NAME: ${{ secrets.DEPLOY_DIR }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-        run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy.key' ${LOCAL_BUILD_DIRECTORY} ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIRECTORY_NAME}
+        run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy.key -o StrictHostKeyChecking=no' ${LOCAL_BUILD_DIRECTORY} ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIRECTORY_NAME}
