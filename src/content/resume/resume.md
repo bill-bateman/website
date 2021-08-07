@@ -1,6 +1,6 @@
 ---
 slug: "/resume"
-date: "2021-05-30"
+date: "2021-08-07"
 title: "Resume"
 ---
 
@@ -15,21 +15,35 @@ _Software Engineer (June 2019 - April 2021. Toronto, ON / Remote, Canada)_
 
 _Software Developer Co-op (Jan 2018 - Aug 2018. Toronto, ON)_
 
-- Member of a small team within the Research Team of a networking company specializing in DDI (DNS, DHCP, IPAM) - specifically we focus on the company's DNS proxy. Free to work in a breadth of areas to prototype and explore new directions. At times called upon for development work or time-boxed investigations.
-- Increasing user impact by adding analytic capabilities to the data platform.
-  - Leading investigation into detecting malicious DGAs (Domain Generation Algorithms). By leveraging Machine Learning, improved detection from roughly 25% to 95%. Wrote script to generate PDF reports for alerting. Contributing to productization.
-  - Also researching other potentially malicious activity, including typosquat queries, fast fluxing, and beaconing. 
+- Member of a small research team of a networking company specializing in DDI (DNS, DHCP, IPAM).
+  - Specific focus on the company's DNS proxy and data.
+  - Free to work in a breadth of areas to prototype and explore new directions.
+  - At times called upon for development work or time-boxed investigations.
+- Ongoing effort to increase user impact by adding analytic capabilities to the data platform.
+  - Leading investigation into detecting malicious DGAs (Domain Generation Algorithms). 
+    - By leveraging Machine Learning, improved detection from roughly 25% to 95%.
+    - Wrote Airflow job to generate reports.
+    - See related [blog post](https://bluecatnetworks.com/blog/among-cyber-attack-techniques-what-is-a-dga/) written by my team lead.
+  - Also researching other potentially malicious activity, including typosquat queries, DNS tunneling, fast fluxing, and beaconing. 
   - Investigated network data represented in a variety of ways (e.g. graph database).
-- Contributed to improvements to the data pipeline.
+- Contributed to investigations around the existing data pipeline, which was based around ElasticSearch.
   - Performed scale testing on an ELK (ElasticSearch - Logstash - Kibana) deployment.
   - Prototyped custom cloud-based index and data store.
-  - Built a datalake to replace ElasticSearch Service, greatly reducing cost and increasing analytics capabilities. Data is stored in AWS S3, and queried using Trino.
-- Prototyped a highly customizable DNS proxy based on a custom DSL that compiles into Rust or WebAssembly. Informed the next version of DNS proxy, which was rewritten from Java to Rust, and uses a plugin-based architecture.
-- Assisted another team with learning Rust and contributing to the open source project Vector. Added support for http and dnstap sources.
-- Attended AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
+- Part of a larger initiative to replace ElasticSearch Service, greatly reducing cost and increasing analytics capabilities.
+  - Data is stored in AWS S3, and queried using Trino.
+  - Full stack is: Terraform, Kubernetes, Helm, Pulsar, Flink, S3, Trino, Airflow, Prometheus, Grafana.
+- Prototyped a highly customizable DNS proxy.
+  - Based on a custom DSL that compiles into Rust or WebAssembly. 
+  - Informed the next version of DNS proxy, which was rewritten from Java to Rust, and uses a plugin-based architecture.
+- Assisted another team with learning Rust.
+- Contributed to the open source project Vector.
+  - Added support for [http](https://github.com/timberio/vector/pull/1650) and [dnstap](https://github.com/timberio/vector/pull/6681/commits) sources, as well as a [couple smaller PRs](https://github.com/timberio/vector/pulls?q=is%3Apr+is%3Aclosed+author%3Abill-bateman+).
+- Conferences attended:
+  - AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
+  - MLOps 2021 to learn about operationalizing Machine Learning.
 
 **Languages / Tools:**
-Rust, Python, Java, Flink, Vector, Tensorflow/Keras, Trino, AWS (Lambda, Firehose, S3, Kinesis, ElasticSearch Service)
+Rust, Python, Java, Flink, Vector, Tensorflow/Keras, Trino, Kubernetes, AWS (Lambda, Firehose, S3, Kinesis, ElasticSearch Service)
 
 --------
 

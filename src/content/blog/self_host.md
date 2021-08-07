@@ -9,6 +9,8 @@ Local cloud might be a bit of an oxymoron, but it's not a bad way to describe wh
 
 Inspired by [this post by Marko Zivanovic](https://www.markozivanovic.com/screw-it-ill-host-it-myself/), I decided to set up my own version.
 
+_Updated on August 7, 2021._
+
 # Motivation / Goals
 
 Previously, I had basically nothing. Important documents, treasured images, and my music library were spread out on different devices, with no security and only one backup to an external HDD. This is not a safe setup, especially since the HDD is already quite old.
@@ -33,7 +35,7 @@ My first priority was data, and [Nextcloud](http://nextcloud.com/) is pretty gre
 
 For my cell phone, the Nextcloud app let's you automatically upload photos, which is nice. I also sync contacts from Nextcloud.
 
-For backups, I manually back everything to a 1TB external HDD, and also manually backup to [Backblaze](https://www.backblaze.com/) (storage is cheap at $0.005 / GB / month). Some might want automatic backups, but I prefer the manual process
+For backups, I manually back everything to a 1TB external HDD, and also manually backup to [Backblaze](https://www.backblaze.com/) (storage is cheap at $0.005 / GB / month). Some might want automatic backups, but I prefer the manual process.
 
 ## Music
 
@@ -53,6 +55,8 @@ I haven't found a desktop client that I really like. I'm spread out across Mac, 
 
 For iOS, I've been trying out both play:Sub and Amperfy, and haven't yet chosen between them, although play:Sub does cost a small amount. Both allow you to download music to the cache, which is essential for me.
 
+_August 7, 2021 update_: I've been exclusively using play:Sub. It does the job, but is a bit janky in a couple ways (rarely shows album art, UI is clunky, etc).
+
 ## Videos
 
 My only requirement here was to be able to stream videos to my TV. I had hoped to use [Jellyfin](https://jellyfin.org/), but unfortunately there is no client for my TV (Samsung has it's own OS called Tizen), although it is coming soon. You can see the repo for [jellyfin-tizen here](https://github.com/jellyfin/jellyfin-tizen). I tried manually installing it, but didn't manage to connect the TV to my computer and gave up pretty quickly.
@@ -60,6 +64,8 @@ My only requirement here was to be able to stream videos to my TV. I had hoped t
 Until I retry or the official version is released, I'm using [Plex](https://www.plex.tv/). 
 
 My other option (which sounds very attractive) is to ditch the Samsung smart TV and power a dumb TV with a Raspberry Pi, or something similar.
+
+_August 7, 2021 update_: After giving away the Samsung TV, I'm now using Jellyfin to stream videos to an iPad. Mostly it works fine, although sometimes the video freezes. Not sure if I'll get another TV in the future.
 
 ## Laptop
 
