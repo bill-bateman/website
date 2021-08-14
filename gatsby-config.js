@@ -92,15 +92,17 @@ module.exports = {
 				feeds: [
 					{
 						serialize: ({ query: { site, allMarkdownRemark } }) => {
-							return allMarkdownRemark.edges.map(edge => {
-								return Object.assign({}, edge.node.frontmatter, {
-									description: edge.node.excerpt,
-									date: edge.node.frontmatter.date,
-									url: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
-									guid: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
-									custom_elements: [{ "content:encoded": edge.node.html }],
-								})
-							})
+							return allMarkdownRemark.edges
+								.filter(edge => edge.node.frontmatter.slug.split('/').length === 3) //filter out things like resume.md, and notes, that have more or less than 2 slashes in the slug
+								.map(edge => {
+									return Object.assign({}, edge.node.frontmatter, {
+										description: edge.node.excerpt,
+										date: edge.node.frontmatter.date,
+										url: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
+										guid: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
+										custom_elements: [{ "content:encoded": edge.node.html }],
+									})
+								});
 						},
 						query: `
 			              {
