@@ -45,7 +45,7 @@ Ampache was able to import all my music library, but had some trouble finding al
 
 For the cover art, it for some reason found art with a very small resolution (like 20x20 pixels), which looked horrible on any interface. Not sure if there was an easier way around this, but I ended up manually finding about 150 cover art images, and placing them in my music library (Ampache will pick up art placed in the directory - by default it looks for images with the same name as the folder). 
 
-The album splits were, in the end, mainly due to different expectations in tagging. For whatever reason, I had albums where the `year` tag was set differently for different songs (e.g. `Best of` albums had the `year` set as the original release year of that particular song). However, Ampache expects this tag to be the same for the whole album, and to be the year that the _album_ was released. 
+The album splits were, in the end, mainly due to different expectations in tagging. For whatever reason, I had albums where the 'year' tag was set differently for different songs (e.g. 'Best of' albums had the 'year' set as the original release year of that particular song). However, Ampache expects this tag to be the same for the whole album, and to be the year that the _album_ was released. 
 
 To fix this, and some other tagging problems (not properly recognizing some albums), I used [beets](https://beets.io/) music tagger. This took a while, and I still had to manually fix some remaining issues, but definitely a good way to tag your music.
 
