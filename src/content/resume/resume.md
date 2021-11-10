@@ -15,60 +15,34 @@ _Software Engineer (June 2019 - April 2021. Toronto, ON / Remote, Canada)_
 
 _Software Developer Co-op (Jan 2018 - Aug 2018. Toronto, ON)_
 
-- Member of a small research team of a networking company specializing in DDI (DNS, DHCP, IPAM).
-  - Specific focus on the company's DNS proxy and data.
-  - Free to work in a breadth of areas to prototype and explore new directions.
-  - At times called upon for development work or time-boxed investigations.
-- Ongoing effort to increase user impact by adding analytic capabilities to the data platform.
-  - Leading investigation into detecting malicious DGAs (Domain Generation Algorithms). 
-    - By leveraging Machine Learning, improved detection from roughly 25% to 95%.
-    - Wrote Airflow job to generate reports.
-    - See related [blog post](https://bluecatnetworks.com/blog/among-cyber-attack-techniques-what-is-a-dga/) written by my team lead.
-  - Also researching other potentially malicious activity, including typosquat queries, DNS tunneling, fast fluxing, and beaconing. 
-  - Investigated network data represented in a variety of ways (e.g. graph database).
-- Contributed to investigations around the existing data pipeline, which was based around ElasticSearch.
-  - Performed scale testing on an ELK (ElasticSearch - Logstash - Kibana) deployment.
-  - Prototyped custom cloud-based index and data store.
-- Part of a larger initiative to replace ElasticSearch Service, greatly reducing cost and increasing analytics capabilities.
-  - Data is stored in AWS S3, and queried using Trino.
-  - Full stack is: Terraform, Kubernetes, Helm, Pulsar, Flink, S3, Trino, Airflow, Prometheus, Grafana.
-- Prototyped a highly customizable DNS proxy.
-  - Based on a custom DSL that compiles into Rust or WebAssembly. 
-  - Informed the next version of DNS proxy, which was rewritten from Java to Rust, and uses a plugin-based architecture.
-- Assisted another team with learning Rust.
-- Contributed to the open source project Vector.
-  - Added support for [http](https://github.com/timberio/vector/pull/1650) and [dnstap](https://github.com/timberio/vector/pull/6681/commits) sources, as well as a [couple smaller PRs](https://github.com/timberio/vector/pulls?q=is%3Apr+is%3Aclosed+author%3Abill-bateman+).
-- Conferences attended:
-  - AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
-  - MLOps 2021 to learn about operationalizing Machine Learning.
-
-**Languages / Tools:**
-Rust, Python, Java, Flink, Vector, Tensorflow/Keras, Trino, Kubernetes, AWS (Lambda, Firehose, S3, Kinesis, ElasticSearch Service)
+- Reduced cost and increased analytics capability by replacing ElasticSearch with a datalake based on AWS S3 and Trino (Presto SQL).
+- Improved detection of malicious DGA queries by training a Machine Learning model, increasing accuracy from roughly 25% to 95%.
+  - See related [blog post](https://bluecatnetworks.com/blog/among-cyber-attack-techniques-what-is-a-dga/) written by my team lead.
+- Wrote Airflow jobs to create periodic reports, increasing customer visibility.
+- Built a React/Redux website for access to the reports.
+- Created a custom visualization using D3.js and WebGL for viewing information on millions of IPs.
+- Assisted another team with learning Rust and contributing to the open source log-shipping project Vector. Added support for [http](https://github.com/timberio/vector/pull/1650) and [dnstap](https://github.com/timberio/vector/pull/6681/commits) data sources.
+- Attended AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
+- Virtually attended MLOps World 2021 to learn best practices around ML training and deployment.
 
 --------
 
 ## **_Ranch Systems_**
 _Summer Intern (May 2017 - Aug 2017. Novato, CA)_
 
-- Integrated new sensors in various protocols including flow meters, VFD controllers, radios, and cameras.
+- Integrated new sensors in various protocols (including flow meters, VFD controllers, radios, and cameras) to expand product offerings.
 - Prototyped OCR (Optical Character Recognition) software to automate reading of flow meter displays.
-
-**Languages / Tools:**
-Company's Custom DSL (for sensor integration); C++, OpenCV, Google Tesseract (for OCR)
 
 ---
 
 ## **_University of Toronto_**
-### **Summer Research Fellowship**
+### **NSERC Summer Research Fellowship**
 
 _Summer Research Fellowship (May 2016 - Aug 2016. Toronto, ON)_
 
 - Funded through NSERC USRA (Undergraduate Student Research Award) to work under Prof. Alberto Leon-Garcia.
-- Developed application for detection of anomalous behaviours in networks of VMs based on a Master's Thesis from Prof. Leon-Garcia's research group.
-- Worked with a team of summer students to develop a IoT application that monitored crowd movement based on WiFi traffic.
-
-**Languages / Tools:**
-Scala, Apache Spark (for anomaly detection); Python, Raspberry Pi, Onion board, MongoDB (for IoT application)
+- Implemented anomaly detection of VM behaviour using Apache Spark and Scala.
+- Developed a Python IoT application to monitor crowd movement based on WiFi traffic.
 
 ---
 
@@ -77,13 +51,8 @@ _Computer Engineering Intern (May 2015 - Aug 2015. Deshler, NE)_
 
 _Engineering Assistant - Part Time (Aug 2013 - Aug 2014. Deshler, NE)_
 
-- Worked with an Embedded Software Engineer to develop improved on-board software for large irrigation equipment.
+- Developed on-board software and remote radio control software for large irrigation equipment, increasing usability.
 - Interfaced with sensors, sprinklers, and GPS.
-- Improved functionality and usability of software to control large irrigation equipment via radio
-- Owned features from customer interviews in the field to development.
-
-**Languages / Tools:**
-C++, Qt/QML, Visual Basic
 
 ---
 
@@ -95,10 +64,21 @@ _Sept 2014 - May 2019_
 
 _B.ASc. Computer Engineering with High Honours_
 
-- Graduated with 4.0 GPA
+- Cumulative GPA: 4.00.
 - Awarded Adel S. Sedra Gold Medal for highest cumulative academic standing in Computer Engineering
 - Awarded W. S. Wilson Medal for highest weighted average in 4th year Computer Engineering
 - Certificate in Music Technology
+
+---
+
+# Skills
+
+- *Proficient*
+  - Python, AWS
+- *Familiar*
+  - Rust, Airflow, Trino
+- *Some Experience*
+  - Java, C, Javascript, React, SQL, D3.js, WebGL, Tensorflow, Flink, Spark
 
 ---
 
