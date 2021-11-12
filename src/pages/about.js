@@ -12,7 +12,7 @@ export default function Home() {
       <ul className="nobullets">
         <li><b>Contact:</b></li>
         <li><img alt="Mail Icon" width="15px" src={mail} />  bill at batemanzhou dot com</li>
-        <li><img alt="LinkedIn Icon" width="15px" src={linkedin} />  <a href="https://www.linkedin.com/in/william-bateman-8aaa91107/">Bill Bateman | LinkedIn</a></li>
+        <li><img alt="LinkedIn Icon" width="15px" src={linkedin} />  <a href="https://www.linkedin.com/in/wsbateman/">Bill Bateman | LinkedIn</a></li>
       </ul>
       <ul className="nobullets">
         <li><b>My interests include:</b></li>
