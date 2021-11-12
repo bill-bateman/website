@@ -77,9 +77,9 @@ _B.ASc. Computer Engineering with High Honours_
 
 # Skills
 
-- *Proficient: * Python, AWS.
-- *Familiar: * Rust, Trino, Airflow.
-- *Some Experience: * C, Javascript, React, D3.js, WebGL, SQL, Java, Tensorflow, Flink, Spark.
+- *Proficient*: Python, AWS.
+- *Familiar*: Rust, Trino, Airflow.
+- *Some Experience*: C, Javascript, React, D3.js, WebGL, SQL, Java, Tensorflow, Flink, Spark.
 
 ---
 
