@@ -11,19 +11,24 @@ title: "Resume"
 ## **_BlueCat Networks_**
 _Software Engineer II (May 2021 - Current. Remote, Canada)_
 
+- Owned initiatives, built prototypes, and performed investigations as a member of a small R&D team.
+- Increased visibility into data by spearheading periodic reports using Airflow.
+- Provided access to reports and visualizations by creating a React/Redux website.
+- Displayed information on 100,000+ devices with a custom visualization using D3.js and WebGL.
+- Attended MLOps World 2021 to learn best practices around ML training and deployment.
+
 _Software Engineer (June 2019 - April 2021. Toronto, ON / Remote, Canada)_
+
+- Reduced cost and increased analytics capability beyond queries against 30 days of data by working towards an ElasticSearch replacement with a datalake based on AWS S3 and Trino.
+- Improved detection of a malicious class of DNS from 25% to 95% with a Machine Learning model.
+  - See related [blog post](https://bluecatnetworks.com/blog/among-cyber-attack-techniques-what-is-a-dga/) written by my team lead.
+- Increased visibility into customer networks by assisting a contribution to the Rust-based open source log-shipping project Vector to allow exporting DNS query logs. Added support for [http](https://github.com/timberio/vector/pull/1650) and [dnstap](https://github.com/timberio/vector/pull/6681/commits) data sources.
+- Attended AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
 
 _Software Developer Co-op (Jan 2018 - Aug 2018. Toronto, ON)_
 
-- Reduced cost and increased analytics capability by replacing ElasticSearch with a datalake based on AWS S3 and Trino (Presto SQL).
-- Improved detection of malicious DGA queries by training a Machine Learning model, increasing accuracy from roughly 25% to 95%.
-  - See related [blog post](https://bluecatnetworks.com/blog/among-cyber-attack-techniques-what-is-a-dga/) written by my team lead.
-- Wrote Airflow jobs to create periodic reports, increasing customer visibility.
-- Built a React/Redux website for access to the reports.
-- Created a custom visualization using D3.js and WebGL for viewing information on millions of IPs.
-- Assisted another team with learning Rust and contributing to the open source log-shipping project Vector. Added support for [http](https://github.com/timberio/vector/pull/1650) and [dnstap](https://github.com/timberio/vector/pull/6681/commits) data sources.
-- Attended AWS re:Invent 2019 to increase my knowledge of the AWS cloud.
-- Virtually attended MLOps World 2021 to learn best practices around ML training and deployment.
+- Investigated cost-effective alternatives to AWS ElasticSearch Service, including self-managed ElasticSearch, and indexing on S3. Directly informed later decisions to replace ElasticSearch.
+- Exposed value in data by performing analysis with a variety of technologies, including Apache Spark.
 
 --------
 
@@ -36,9 +41,8 @@ _Summer Intern (May 2017 - Aug 2017. Novato, CA)_
 ---
 
 ## **_University of Toronto_**
-### **NSERC Summer Research Fellowship**
 
-_Summer Research Fellowship (May 2016 - Aug 2016. Toronto, ON)_
+_NSERC Undergraduate Student Research Award (May 2016 - Aug 2016. Toronto, ON)_
 
 - Funded through NSERC USRA (Undergraduate Student Research Award) to work under Prof. Alberto Leon-Garcia.
 - Implemented anomaly detection of VM behaviour using Apache Spark and Scala.
@@ -73,12 +77,9 @@ _B.ASc. Computer Engineering with High Honours_
 
 # Skills
 
-- *Proficient*
-  - Python, AWS
-- *Familiar*
-  - Rust, Airflow, Trino
-- *Some Experience*
-  - Java, C, Javascript, React, SQL, D3.js, WebGL, Tensorflow, Flink, Spark
+- *Proficient: * Python, AWS.
+- *Familiar: * Rust, Trino, Airflow.
+- *Some Experience: * C, Javascript, React, D3.js, WebGL, SQL, Java, Tensorflow, Flink, Spark.
 
 ---
 
