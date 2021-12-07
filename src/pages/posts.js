@@ -4,6 +4,8 @@ import PostLink from "../components/post-link"
 import Layout from "../components/layout"
 import FilterPosts from "../components/filter-posts"
 
+import "katex/dist/katex.min.css"
+
 const IndexPage = ({
   data: {
     allMarkdownRemark: { edges },
