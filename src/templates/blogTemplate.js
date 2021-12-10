@@ -1,33 +1,35 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
 import Img from "gatsby-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
+
+import Layout from "../components/layout"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { mdx } = data // data.markdownRemark holds your post data
+  const { frontmatter, body } = mdx
 
   if (frontmatter.featuredImage === null) {
     return (
       <Layout title={frontmatter.title} subtitle={frontmatter.date}>
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        <MDXRenderer>{body}</MDXRenderer>
       </Layout>
     )
   } else {
     return (
       <Layout title={frontmatter.title} subtitle={frontmatter.date}>
         <Img fluid={frontmatter.featuredImage.childImageSharp.fluid} />
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        <MDXRenderer>{body}</MDXRenderer>
       </Layout>
     )
   }
 }
 export const pageQuery = graphql`
   query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
+    mdx(frontmatter: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         slug

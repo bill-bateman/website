@@ -16,6 +16,13 @@ module.exports = {
 				start_url: `/`,
 			}
 		},
+		{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/data/`,
+    			name: `data`,
+    		},
+    	},
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {
@@ -58,9 +65,10 @@ module.exports = {
 	      },
 	    },
 	    {
-	    	resolve: `gatsby-transformer-remark`,
+	    	resolve: `gatsby-plugin-mdx`,
 	    	options: {
-	    		plugins: [
+				extensions: [`.mdx`, `.md`],
+	    		gatsbyRemarkPlugins: [
 	    			{
 	    				resolve: `gatsby-remark-images`,
 	    				options: {
@@ -81,7 +89,7 @@ module.exports = {
 		`gatsby-transformer-sharp`,
 		`gatsby-remark-images`,
 		{
-			resolve: `gatsby-plugin-feed`,
+			resolve: `gatsby-plugin-feed-mdx`,
 			options: {
 				query: `
 				  {
@@ -97,8 +105,8 @@ module.exports = {
 				`,
 				feeds: [
 					{
-						serialize: ({ query: { site, allMarkdownRemark } }) => {
-							return allMarkdownRemark.edges
+						serialize: ({ query: { site, allMdx } }) => {
+							return allMdx.edges
 								.filter(edge => edge.node.frontmatter.slug.split('/').length === 3) //filter out things like resume.md, and notes, that have more or less than 2 slashes in the slug
 								.map(edge => {
 									return Object.assign({}, edge.node.frontmatter, {
@@ -112,22 +120,22 @@ module.exports = {
 						},
 						query: `
 			              {
-			                allMarkdownRemark(
-			                  sort: { order: DESC, fields: [frontmatter___date] },
-			                ) {
-			                  edges {
-			                    node {
-			                      excerpt
-			                      html
-			                      fields { slug }
-			                      frontmatter {
-			                        title
-			                        date
-			                        slug
-			                      }
-			                    }
-			                  }
-			                }
+							allMdx(
+								sort: { order: DESC, fields: [frontmatter___date] },
+							  ) {
+								edges {
+								  node {
+									excerpt
+									html
+									fields { slug }
+									frontmatter {
+									  title
+									  date
+									  slug
+									}
+								  }
+								}
+							  }
 			              }
 			              `,
 			              output: "/rss.xml",

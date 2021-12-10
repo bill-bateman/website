@@ -1,5 +1,8 @@
 import React from "react"
+import {MDXProvider} from "@mdx-js/react"
+
 import banner from "../content/images/banner.jpg"
+import FigureText from "./shortcodes/FigureText.js"
 
 function Banner() {
 	return (<div style={{minHeight:"75px"}}>
@@ -42,8 +45,10 @@ function GoatCounter() {
 	return (<script data-goatcounter="https://batemanzhouanalytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>)
 }
 
+const shortcodes = {FigureText};
+
 export default function Layout(props) {
-  return (<>
+  return (<MDXProvider components={shortcodes}>
 	<GoatCounter />
   	<Banner />
     <Header title={props.title} subtitle={props.subtitle}/>
@@ -51,5 +56,5 @@ export default function Layout(props) {
     	{props.children}
     </div>
     <Footer />
-  </>)
+  </MDXProvider>)
 }

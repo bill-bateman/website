@@ -8,10 +8,9 @@ import "katex/dist/katex.min.css"
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark: { edges },
+    allMdx: { edges },
   },
 }) => {
-  //get all posts
   const FilteredEdges = edges.filter(edge => edge.node.frontmatter.slug.split('/').length === 3); //filter out things like resume.md, and notes, that have more or less than 2 slashes in the slug
   const Posts = FilteredEdges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   //get all categories (first part of slug)
@@ -27,13 +26,13 @@ const IndexPage = ({
 export default IndexPage
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           id
           excerpt(pruneLength: 250)
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "YYYY-MM-DD")
             slug
             title
             featuredImage {
