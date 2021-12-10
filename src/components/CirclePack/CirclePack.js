@@ -25,15 +25,11 @@ const CirclePack = () => {
     useEffect(() => { //redo layout and update svg
         const root = d3.hierarchy(data);
         root.sum(d => d.value).sort();
-        console.log(root);
-
-        const start = performance.now();
+        
         d3.pack()
             .size([size, size])
             .padding(3)
             (root);
-        const end = performance.now();
-        console.log(end-start);
 
         const svg = d3.select("#svg");
         const t = svg.transition().duration(750);
