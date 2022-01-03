@@ -23,6 +23,13 @@ module.exports = {
     			name: `data`,
     		},
     	},
+		{
+    		resolve: `gatsby-source-filesystem`,
+    		options: {
+    			path: `${__dirname}/src/content/art/`,
+    			name: `art`,
+    		},
+    	},
     	{
     		resolve: `gatsby-source-filesystem`,
     		options: {

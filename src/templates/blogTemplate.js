@@ -17,14 +17,13 @@ export default function Template({
         <MDXRenderer>{body}</MDXRenderer>
       </Layout>
     )
-  } else {
-    return (
-      <Layout title={frontmatter.title} subtitle={frontmatter.date}>
-        <Img fluid={frontmatter.featuredImage.childImageSharp.fluid} />
-        <MDXRenderer>{body}</MDXRenderer>
-      </Layout>
-    )
-  }
+  } 
+  return (
+    <Layout title={frontmatter.title} subtitle={frontmatter.date}>
+      <Img fluid={frontmatter.featuredImage.childImageSharp.fluid} />
+      <MDXRenderer>{body}</MDXRenderer>
+    </Layout>
+  )
 }
 export const pageQuery = graphql`
   query($slug: String!) {
