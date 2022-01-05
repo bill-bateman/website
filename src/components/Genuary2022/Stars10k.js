@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 
 // import './WhistlerStatus.css';
 
 const Stars10k = () => {
 
-    const WIDTH = 600;
-    const HEIGHT = 600;
-    const DIM = WIDTH/23;
+    const WIDTH = useMemo(() => (600), []);
+    const HEIGHT = useMemo(() => (600), []);
+    const DIM = useMemo(() => (WIDTH/23), [WIDTH]);
 
-    const MTN_VERTICES = [
+    const MTN_VERTICES = useMemo(() => ([
         [0, HEIGHT],
         [0, HEIGHT-10],
         [2*DIM, HEIGHT-15],
@@ -43,57 +43,27 @@ const Stars10k = () => {
         [22*DIM, HEIGHT-10],
         [WIDTH, HEIGHT-10],
         [WIDTH, HEIGHT],
-    ];
+    ]), [WIDTH, HEIGHT, DIM]); 
 
-    class ContLine {
-        constructor(ctx) {
-            this.ctx = ctx;
+    const draw_ground = useCallback((ctx) => {
+        class ContLine {
+            constructor(ctx) {
+                this.ctx = ctx;
+            };
+            init(x,y) {
+                this.x = x; this.y = y;
+                this.ctx.beginPath();
+                this.ctx.moveTo(x,y);
+            };
+            point(x,y) {
+                this.ctx.lineTo(this.x, this.y, x, y);
+                this.x = x; this.y = y;
+            };
+            draw() {
+                this.ctx.stroke();
+            };
         };
-        init(x,y) {
-            this.x = x; this.y = y;
-            this.ctx.beginPath();
-            this.ctx.moveTo(x,y);
-        };
-        point(x,y) {
-            this.ctx.lineTo(this.x, this.y, x, y);
-            this.x = x; this.y = y;
-        };
-        draw() {
-            this.ctx.stroke();
-        };
-    };
 
-    const randn_bm = () => {
-        //see https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
-        let u = 0, v = 0;
-        while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-        while(v === 0) v = Math.random();
-        let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
-        num = num / 10.0 + 0.5; // Translate to 0 -> 1
-        if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
-        return num;
-    }
-
-    const test_occlude = (x,y) => {
-        //don't show star if it would be behind the mountain
-        //using Jordan Curve Theorem
-        //see http://jeffreythompson.org/collision-detection/poly-point.php
-        let collision = false;
-        for (let i=0; i<MTN_VERTICES.length; ++i) {
-            const x1=MTN_VERTICES[i][0], y1=MTN_VERTICES[i][1];
-            const next = (i+1>=MTN_VERTICES.length) ? 0 : i+1;
-            const x2=MTN_VERTICES[next][0], y2=MTN_VERTICES[next][1];
-            if (
-              ((y1 >= y && y2 < y) || (y1 < y && y2 >= y)) &&
-              (x < (x2-x1) * (y-y1) / (y2-y1) + x1)
-            ) {
-              collision = !collision;
-            }
-        }
-        return collision;
-    };
-
-    const draw_ground = (ctx) => {
         ctx.strokeStyle = 'rgb(255,255,255)';
         ctx.globalAlpha = 0.6;
         const line_drawer = new ContLine(ctx);
@@ -102,13 +72,43 @@ const Stars10k = () => {
             line_drawer.point(MTN_VERTICES[i][0], MTN_VERTICES[i][1]);
         }
         line_drawer.draw();
-    };
+    }, [MTN_VERTICES]);
 
-    const draw_star = (ctx,x,y) => {
-        ctx.fillRect(x,y,1,1);
-    };
+    const draw_stars = useCallback((ctx) => {
+        const draw_star = (ctx,x,y) => {
+            ctx.fillRect(x,y,1,1);
+        };
 
-    const draw_stars = (ctx) => {
+        const randn_bm = () => {
+            //see https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+            while(v === 0) v = Math.random();
+            let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+            num = num / 10.0 + 0.5; // Translate to 0 -> 1
+            if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
+            return num;
+        }
+    
+        const test_occlude = (x,y) => {
+            //don't show star if it would be behind the mountain
+            //using Jordan Curve Theorem
+            //see http://jeffreythompson.org/collision-detection/poly-point.php
+            let collision = false;
+            for (let i=0; i<MTN_VERTICES.length; ++i) {
+                const x1=MTN_VERTICES[i][0], y1=MTN_VERTICES[i][1];
+                const next = (i+1>=MTN_VERTICES.length) ? 0 : i+1;
+                const x2=MTN_VERTICES[next][0], y2=MTN_VERTICES[next][1];
+                if (
+                  ((y1 >= y && y2 < y) || (y1 < y && y2 >= y)) &&
+                  (x < (x2-x1) * (y-y1) / (y2-y1) + x1)
+                ) {
+                  collision = !collision;
+                }
+            }
+            return collision;
+        };
+
         ctx.fillStyle = 'rgb(255,255,255)';
         ctx.globalAlpha = 0.6;
         for (let i=0; i<5000; ++i) {
@@ -127,7 +127,7 @@ const Stars10k = () => {
             if (!test_occlude(x,y)) draw_star(ctx, x,y);
             else --i;
         }
-    };
+    }, [MTN_VERTICES, HEIGHT, WIDTH]);
 
     useEffect(() => {
         //draw once
@@ -135,6 +135,7 @@ const Stars10k = () => {
         const ctx = c.getContext("2d");
         
         //black background
+        ctx.globalAlpha = 1.0;
         ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
         ctx.fillStyle = 'rgba(0,0,0,1.0)';
         ctx.fillRect(0,0,c.clientWidth,c.clientHeight);
@@ -142,7 +143,7 @@ const Stars10k = () => {
         draw_stars(ctx);
         draw_ground(ctx);
         
-    }, []);
+    }, [draw_stars, draw_ground]);
 
     return <canvas id="stars10k__canvas" width={WIDTH} height={HEIGHT} />
 }
