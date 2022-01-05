@@ -86,9 +86,9 @@ const Dither = ({id, canvas_src, image_src, width, height}) => {
         }
     }, [canvas_src, image_src, width, height, dither, hidden]);
 
-    return <div onClick={toggleShow}>
-        <canvas id={hidden} width={width} height={height} style={{marginLeft: -(width-650)/2+"px", display: show ? "none" : "block"}}  />
-        <canvas id={dithered} width={width} height={height} style={{marginLeft: -(width-650)/2+"px", display: !show ? "none" : "block"}} />
+    return <div>
+        <canvas onClick={toggleShow} id={hidden} width={width} height={height} style={{marginLeft: -(width-650)/2+"px", display: show ? "none" : "block"}}  />
+        <canvas onClick={toggleShow} id={dithered} width={width} height={height} style={{marginLeft: -(width-650)/2+"px", display: !show ? "none" : "block"}} />
     </div>
 }
 export default Dither;
