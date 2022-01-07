@@ -86,7 +86,7 @@ const Square = ({dim}) => {
 
             ctx.stroke();
         }
-    }, []);
+    }, [dim]);
 
     return <canvas id="squarecanvas" width={dim+"px"} height={dim+"px"} style={{marginLeft: -(dim-650)/2+"px"}} />
 }

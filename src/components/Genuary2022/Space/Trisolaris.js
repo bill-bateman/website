@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState, useRef} from "react";
+import React, {useEffect, useState} from "react";
 import {Displayer} from "./Graphics.js"
 
 const Dither = () => {

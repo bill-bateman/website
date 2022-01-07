@@ -101,7 +101,6 @@ const Fidenza = ({id, image_src, width, height}) => {
             const tmp_rects = [];
             
             for (let i=0; i<num_steps; ++i) {
-                const ii = xy_to_i(x,y)*4;
                 const xi = Math.floor(x / resolution);
                 const yi = Math.floor(y / resolution);
                 const theta = angles[yi*num_columns + xi];
@@ -181,8 +180,6 @@ const Fidenza = ({id, image_src, width, height}) => {
         ctx.fillStyle="rgb(255,255,255)";
         ctx.fillRect(0,0,width,height);
         ctx.fillStyle="rgba(0,0,0,0.1)";
-        const d = 10;
-        console.log(resolution);
         for (let i=0; i<5000; ++i) {
             const x = Math.random() * width;
             const y = Math.random() * height;
