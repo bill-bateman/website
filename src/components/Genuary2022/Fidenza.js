@@ -13,17 +13,74 @@ const Fidenza = ({id, image_src, width, height}) => {
     const grad = id + "_grad_canvas";
 
     const draw = useCallback((src_id) => {
+        const RECTS = [];
         const xy_to_i = (x,y) => {
             return Math.floor(x) + Math.floor(y)*width;
         }
+        const test_collide = (r1,r2) => {
+            const z=1;
+            const ineq_test = (amin,amax,bmin,bmax) => (
+                (amin-bmax<z && amin-bmin>-z) ||
+                (bmin-amax<z && bmin-amin>-z)
+            );
+            const project_min_max = (mx,my,r) => {
+                let min,max,dot;
+                min = r.x1*mx + r.y1*my;
+                max = min;
+
+                dot = r.x2*mx + r.y2*my;
+                if (dot>max) max=dot;
+                if (dot<min) min=dot;
+
+                dot = r.x3*mx + r.y3*my;
+                if (dot>max) max=dot;
+                if (dot<min) min=dot;
+
+                dot = r.x4*mx + r.y4*my;
+                if (dot>max) max=dot;
+                if (dot<min) min=dot;
+
+                return [min,max];
+            }
+            const sat_test = (m,r1,r2) => {
+                const [mx,my] = m;
+                const [amin,amax] = project_min_max(mx,my,r1);
+                const [bmin,bmax] = project_min_max(mx,my,r2);
+                return ineq_test(amin,amax,bmin,bmax);
+            }
+            const get_slope = (r,a) => {
+                let mx,my;
+                if (a===1) {
+                    mx = r.x1-r.x2;
+                    my = r.y1-r.y2;
+                } else {
+                    mx = r.x1-r.x4;
+                    my = r.y1-r.y4;
+                }
+                mx = mx / (mx*mx + my*my);
+                my = my / (mx*mx + my*my);
+                return [mx,my];
+            }
+            //first, cheap but quick comparison
+            if (ineq_test(r1.xmin,r1.xmax,r2.xmin,r2.xmax)) {
+                if (ineq_test(r1.ymin,r1.ymax,r2.ymin,r2.ymax)) {
+                    //next, SAT (separating axis theorem)
+                    //each rect has 2 axis we need to check
+                    //from p1->p2 and from p1->p4
+                    if (!sat_test(get_slope(r1,1),r1,r2)) return false;
+                    if (!sat_test(get_slope(r1,2),r1,r2)) return false;
+                    if (!sat_test(get_slope(r2,1),r1,r2)) return false;
+                    if (!sat_test(get_slope(r2,2),r1,r2)) return false;
+                    //there is no line we can draw between the objects
+                    //i.e. we collide
+                    return true;
+                }
+            }
+            return false;
+        };
         const draw_curve = (ctx, img, angles, sx, sy, num_steps, resolution, num_columns, step_length) => {
             let x = sx, y=sy;
-            ctx.beginPath();
-            ctx.moveTo(sx, sy);
-
-            let r=0;
-            let g=0;
-            let b=0;
+            let r=0, g=0, b=0;
             
             for (let i=0; i<num_steps; ++i) {
                 const ii = xy_to_i(x,y)*4;
@@ -32,19 +89,65 @@ const Fidenza = ({id, image_src, width, height}) => {
                     g += img.data[ii+1] / num_steps;
                     b += img.data[ii+2] / num_steps;
                 }
-
-                const xi = Math.floor(x / resolution);
-                const yi = Math.floor(y / resolution);
-                const theta = angles[yi*num_columns + xi];
-                x += step_length * Math.cos(theta);
-                y += step_length * Math.sin(theta);
-                ctx.lineTo(x,y);
             }
             r = Math.floor(r);
             g = Math.floor(g);
             b = Math.floor(b);
             ctx.strokeStyle = `rgb(${r},${g},${b})`;
-            ctx.stroke();
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+
+            let x1,x2,x3,x4,y1,y2,y3,y4;
+            const w = 2 + Math.random()*num_steps/2;
+            const tmp_rects = [];
+            
+            for (let i=0; i<num_steps; ++i) {
+                const ii = xy_to_i(x,y)*4;
+                const xi = Math.floor(x / resolution);
+                const yi = Math.floor(y / resolution);
+                const theta = angles[yi*num_columns + xi];
+
+                if (x1===undefined) x1=x + w*Math.cos(theta-Math.PI/2);
+                if (x2===undefined) x2=x + w*Math.cos(theta+Math.PI/2);
+                if (y1===undefined) y1=y + w*Math.sin(theta-Math.PI/2);
+                if (y2===undefined) y2=y + w*Math.sin(theta+Math.PI/2);
+
+                x += step_length * Math.cos(theta);
+                y += step_length * Math.sin(theta);
+                
+                x3=x + w*Math.cos(theta+Math.PI/2);
+                x4=x + w*Math.cos(theta-Math.PI/2);
+                y3=y + w*Math.sin(theta+Math.PI/2);
+                y4=y + w*Math.sin(theta-Math.PI/2);
+
+                if (isNaN(x1) || isNaN(x2) || isNaN(x3) || isNaN(x4) || isNaN(y1) || isNaN(y2) || isNaN(y3) || isNaN(y4)) break;
+
+                const xmin = Math.floor(Math.min(x1,x2,x3,x4)), xmax = Math.floor(Math.max(x1,x2,x3,x4));
+                const ymin = Math.floor(Math.min(y1,y2,y3,y4)), ymax = Math.floor(Math.max(y1,y2,y3,y4));
+                const this_rect = {x1,y1,x2,y2,x3,y3,x4,y4,xmin,xmax,ymin,ymax};
+
+                let collision=false;
+                for (const rect of RECTS) {
+                    if (test_collide(this_rect, rect)) {
+                        collision=true; break;
+                    }
+                }
+                if (collision) break;
+
+                ctx.beginPath();
+                ctx.moveTo(x1,y1);
+                ctx.lineTo(x2,y2);
+                ctx.lineTo(x3,y3);
+                ctx.lineTo(x4,y4);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                tmp_rects.push(this_rect);
+
+                x1=x4; x2=x3;
+                y1=y4; y2=y3;
+            }
+
+            RECTS.push(...tmp_rects);
         };
 
         const img = document.getElementById(src_id).getContext("2d").getImageData(0, 0, width, height);
@@ -79,10 +182,11 @@ const Fidenza = ({id, image_src, width, height}) => {
         ctx.fillRect(0,0,width,height);
         ctx.fillStyle="rgba(0,0,0,0.1)";
         const d = 10;
-        for (let i=0; i<10000; ++i) {
+        console.log(resolution);
+        for (let i=0; i<5000; ++i) {
             const x = Math.random() * width;
             const y = Math.random() * height;
-            draw_curve(ctx, img, angles, x, y, 5, resolution, num_columns, resolution);
+            draw_curve(ctx, img, angles, x, y, 2+Math.random()*5, resolution, num_columns, resolution);
         }
 
         // const img2 = new ImageData(bits, width);
