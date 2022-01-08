@@ -12,3 +12,4 @@ I decided to take part in [Genuary 2022](http://genuary.art/) and have some fun 
 3. [Space](/art/genuary_2022/3) (HTML5 canvas).
 4. [Fidenza](/art/genuary_2022/4) (HTML5 canvas).
 5. [Destroy a square](/art/genuary_2022/5) (HTML5 canvas).
+6. [Borrow a style - fidenza cat](/art/genuary_2022/6) (HTML5 canvas).
