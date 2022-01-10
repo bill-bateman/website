@@ -15,3 +15,4 @@ I decided to take part in [Genuary 2022](http://genuary.art/) and have some fun 
 6. [Borrow a style - fidenza cat](/art/genuary_2022/6).
 7. [Sol LeWitt Wall Drawing](/art/genuary_2022/7).
 8. [Single Curve](/art/genuary_2022/8).
+9. [Architecture](/art/genuary_2022/9).
