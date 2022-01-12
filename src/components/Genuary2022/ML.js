@@ -1,13 +1,13 @@
-import React, {useMemo} from "react";
+import React, {useCallback} from "react";
+import Sketch from '../sketch';
 import Scribble from 'scribble-fork';
-import Sketch from "react-p5";
 
 const ML = ({width, height}) => {
-    const displayer = useMemo(() => {
+    const displayer = useCallback((p5) => {
         let scribble = undefined;
 
-        function setup(p5, parent) {
-            p5.createCanvas(width, height).parent(parent);
+        p5.setup = () => {
+            p5.createCanvas(width, height)
             scribble = new Scribble(p5);
         }
 
@@ -15,7 +15,7 @@ const ML = ({width, height}) => {
         const rdim = width/4.1;
         const font_size = 32;
 
-        function draw(p5) {
+        p5.draw = () => {
             if (!d) return;
             p5.background(255);
             
@@ -110,12 +110,10 @@ const ML = ({width, height}) => {
                 scribble.scribbleRect(width/2+1.5*rdim, height/2, rdim, rdim);
             }
         }
-
-        return {setup, draw};
     }, [width, height]);
-    
+
     return <div>
-        <Sketch setup={displayer.setup} draw={displayer.draw} />
+        <Sketch sketch={displayer} />
     </div>
 }
 export default ML;
