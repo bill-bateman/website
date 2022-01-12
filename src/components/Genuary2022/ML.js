@@ -2,31 +2,24 @@ import React, {useMemo} from "react";
 import Scribble from 'scribble-fork';
 import Sketch from "react-p5";
 
-import HelloKetta from "../../content/fonts/HelloKetta.ttf"
-
 const ML = ({width, height}) => {
     const displayer = useMemo(() => {
         let scribble = undefined;
-        let font = undefined;
 
         function setup(p5, parent) {
             p5.createCanvas(width, height).parent(parent);
             scribble = new Scribble(p5);
         }
 
-        function preload(p5) {
-            font = p5.loadFont(HelloKetta);
-        }
-
         let d = true;
         const rdim = width/4.1;
-        const font_size = 64;
+        const font_size = 32;
 
         function draw(p5) {
             if (!d) return;
             p5.background(255);
             
-            if (scribble && font) {
+            if (scribble) {
                 d = false;
                 p5.fill(0);
                 p5.stroke(0);
@@ -44,13 +37,13 @@ const ML = ({width, height}) => {
                                       width/2+0.75*1.1*rdim, height/2-0.05*rdim);
                 
                 //text
-                p5.textFont(font)
                 p5.textSize(font_size);
+                p5.textStyle(p5.ITALIC);
                 p5.fill(0);
                 p5.textAlign(p5.CENTER, p5.CENTER);
-                p5.text("Panda", width/2-1.5*rdim,height/2+rdim/2+font_size*.5);
-                p5.text("Nematode", width/2,height/2+rdim/2+font_size*.5);
-                p5.text("Gibbon", width/2+1.5*rdim,height/2+rdim/2+font_size*.5);
+                p5.text("Panda", width/2-1.5*rdim,height/2+rdim/2+font_size);
+                p5.text("Nematode", width/2,height/2+rdim/2+font_size);
+                p5.text("Gibbon", width/2+1.5*rdim,height/2+rdim/2+font_size);
 
                 //panda x2
                 function panda(x, y) {
@@ -118,11 +111,11 @@ const ML = ({width, height}) => {
             }
         }
 
-        return {setup, preload, draw};
+        return {setup, draw};
     }, [width, height]);
     
     return <div>
-        <Sketch setup={displayer.setup} preload={displayer.preload} draw={displayer.draw} />
+        <Sketch setup={displayer.setup} draw={displayer.draw} />
     </div>
 }
 export default ML;
