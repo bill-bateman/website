@@ -17,3 +17,4 @@ I decided to take part in [Genuary 2022](http://genuary.art/) and have some fun 
 8. [Single Curve](/art/genuary_2022/8).
 9. [Architecture](/art/genuary_2022/9).
 10. [Machine Learning (Wrong Answers only)](/art/genuary_2022/10).
+11. [No Computer](/art/genuary_2022/11).
