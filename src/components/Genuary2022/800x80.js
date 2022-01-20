@@ -64,64 +64,6 @@ void main() {
         sandbox.setUniform("u_myresolution",200,200);
     }, [canvasId])
 
-    // useEffect(() => {
-    //     const update = () => {
-    //         const resx=800, resy=800;
-
-    //         const fract = (x) => (x - Math.floor(x));
-    //         const step = (a,b) => (b<a ? 0 : 1);
-
-    //         const random = (x, y) => {
-    //             return fract(Math.sin(x*12.9898 + y*78.223)*43758.5453123);
-    //         }
-
-    //         const truchetPattern = (x, y, i) => {
-    //             i = fract((i-0.5)*2.0);
-    //             if (i>0.75) {
-    //                 x = 1-x;
-    //                 y = 1-y;
-    //             } else if (i>0.5) {
-    //                 x = 1-x;
-    //             } else if (i>0.25) {
-    //                 y = 1-y;
-    //             }
-    //             return [x,y];
-    //         }
-
-    //         const main = (ctx, vx, vy) => {
-    //             let x = vx/resx, y = vy/resy;
-    //             x *= Math.random()*0.05+9.95; y *= Math.random()*0.5+9.5;
-
-    //             let ix = Math.floor(x), iy = Math.floor(y);
-    //             let fx = fract(x), fy=fract(y);
-
-    //             let [tilex, tiley] = truchetPattern(fx, fy, random(ix,iy));
-
-    //             //circles
-    //             const tlen = Math.sqrt(tilex**2 + tiley**2);
-    //             const tlen1 = Math.sqrt((tilex-1)**2 + (tiley-1)**2);
-    //             const color = (step(tlen, 0.6) - step(tlen,0.4) + 
-    //                             step(tlen1,0.6) - step(tlen1,0.4)) * 256;
-                
-    //             // const r=color*random(ix,iy), g=color*random(ix,iy), b=color*random(ix,iy);
-    //             const r=color,g=color,b=color;
-    //             ctx.fillStyle = `rgb(${r},${g},${b})`;
-    //             ctx.fillRect(vx,vy,1+Math.random(),1+Math.random());
-    //         };
-
-    //         const ctx = document.getElementById(canvasId).getContext("2d");
-    //         ctx.clearRect(0,0,800,80);
-    //         for (let x=0; x<800; ++x) {
-    //             for (let y=0; y<80; ++y) {
-    //                 main(ctx, x, y);
-    //             }
-    //         }
-    //         // window.requestAnimationFrame(update());
-    //         setTimeout(() => update(), 1000);
-    //     };
-    //     update();
-    // }, [canvasId]);
-
     return <div>
         <canvas id={canvasId} width={800} height={80} />
     </div>;
