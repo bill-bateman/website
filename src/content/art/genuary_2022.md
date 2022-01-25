@@ -23,3 +23,4 @@ I decided to take part in [Genuary 2022](http://genuary.art/) and have some fun 
 14. [Something You Would Never Make](/art/genuary_2022/14).
 15. [Sand](/art/genuary_2022/15).
 16. [Gradients Gone Wrong](/art/genuary_2022/16).
+17. [3 Colors](/art/genuary_2022/17).
