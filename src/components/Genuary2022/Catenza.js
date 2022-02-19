@@ -115,34 +115,39 @@ const Catenza = ({id, width, height}) => {
 
             if (tmp_rects.length > 20) {
                 //enforce minimum length
-
+                
+                let r, theta;
                 ctx.strokeStyle = `rgb(255,255,255)`;
-                ctx.fillStyle = `rgb(255,255,255)`;
+                ctx.fillStyle = `rgb(255,255,255)`;         
 
-                for (const r of tmp_rects) {
-                    ctx.beginPath();
-                    ctx.moveTo(r.x1,r.y1);
-                    ctx.lineTo(r.x2,r.y2);
-                    ctx.lineTo(r.x3,r.y3);
-                    ctx.lineTo(r.x4,r.y4);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.stroke();
+                //going down the cat
+                ctx.beginPath();
+                for (let i=0; i<tmp_rects.length; ++i) {
+                    const rect = tmp_rects[i];
+                    if (i===0) ctx.moveTo(rect.x1,rect.y1);
+                    else ctx.lineTo(rect.x1,rect.y1);
                 }
+                ctx.lineTo(tmp_rects[tmp_rects.length-1].x4,tmp_rects[tmp_rects.length-1].y4)
 
                 //rounded tail
-                let r = tmp_rects[tmp_rects.length-1];
-                let theta = Math.atan2(r.y4-r.y3,r.x4-r.x3);
-                ctx.beginPath();
+                r = tmp_rects[tmp_rects.length-1];
+                theta = Math.atan2(r.y4-r.y3,r.x4-r.x3);
+                // ctx.beginPath();
                 ctx.arc(
                     (r.x3+r.x4)/2,
                     (r.y3+r.y4)/2,
                     Math.sqrt(((r.x4-r.x3)**2+(r.y4-r.y3)**2))/2,
                     theta, theta+Math.PI, false
                 );
-                ctx.fill();
-                ctx.stroke();
 
+                //going back up the cat
+                for (let i=tmp_rects.length-1; i>=0; --i) {
+                    const rect = tmp_rects[i];
+                    ctx.lineTo(rect.x3,rect.y3);
+                }
+                ctx.lineTo(tmp_rects[0].x2,tmp_rects[0].y2);
+
+                //cute head
                 x1 = r.x4; x2 = r.x3;
                 y1 = r.y4; y2 = r.y3;
                 x4 = r.x4 - w/4 * Math.sin(theta);
@@ -154,45 +159,42 @@ const Catenza = ({id, width, height}) => {
                     xmax: Math.max(x1,x2,x3,x4), xmin: Math.min(x1,x2,x3,x4),
                     ymax: Math.max(y1,y2,y3,y4), ymin: Math.min(y1,y2,y3,y4),
                 })
-                
-                //cute head
                 r = tmp_rects[0];
                 theta = Math.atan2(r.y2-r.y1,r.x2-r.x1);
 
-                ctx.beginPath();
-                ctx.moveTo(r.x1,r.y1);
                 ctx.lineTo(
-                    r.x1 + w/3 * Math.cos(theta) - w * Math.sin(theta),
-                    r.y1 + w/3 * Math.sin(theta) + w * Math.cos(theta),
-                )
-                ctx.lineTo(
-                    r.x1 + 2*w/3 * Math.cos(theta) - w/2 * Math.sin(theta),
-                    r.y1 + 2*w/3 * Math.sin(theta) + w/2 * Math.cos(theta),
+                    r.x1 + 5*w/3 * Math.cos(theta) - w * Math.sin(theta),
+                    r.y1 + 5*w/3 * Math.sin(theta) + w * Math.cos(theta),
                 )
                 ctx.lineTo(
                     r.x1 + 4*w/3 * Math.cos(theta) - w/2 * Math.sin(theta),
                     r.y1 + 4*w/3 * Math.sin(theta) + w/2 * Math.cos(theta),
                 )
                 ctx.lineTo(
-                    r.x1 + 5*w/3 * Math.cos(theta) - w * Math.sin(theta),
-                    r.y1 + 5*w/3 * Math.sin(theta) + w * Math.cos(theta),
+                    r.x1 + 2*w/3 * Math.cos(theta) - w/2 * Math.sin(theta),
+                    r.y1 + 2*w/3 * Math.sin(theta) + w/2 * Math.cos(theta),
                 )
-                ctx.lineTo(r.x2,r.y2);
+                ctx.lineTo(
+                    r.x1 + w/3 * Math.cos(theta) - w * Math.sin(theta),
+                    r.y1 + w/3 * Math.sin(theta) + w * Math.cos(theta),
+                )
+
                 ctx.closePath();
                 ctx.fill();
                 ctx.stroke();
 
-                ctx.beginPath();
-                ctx.arc(
-                    r.x1 + w * Math.cos(theta) + w/4 * Math.sin(theta),
-                    r.y1 + w * Math.sin(theta) - w/4 * Math.cos(theta),
-                    w*7/8,
-                    theta + Math.PI*120/180, theta + Math.PI * 60/180, true
-                )
-                ctx.stroke();
-                ctx.fill();
+                //top of head           
+                // ctx.beginPath();
+                // ctx.arc(
+                //     r.x1 + w * Math.cos(theta) + w/4 * Math.sin(theta),
+                //     r.y1 + w * Math.sin(theta) - w/4 * Math.cos(theta),
+                //     w*7/8,
+                //     theta + Math.PI*120/180, theta + Math.PI * 60/180, true
+                // )
+                // ctx.stroke();
+                // ctx.fill();     
 
-                //cute face
+                //cute face (eyes and nose and mouth)
                 ctx.strokeStyle = `rgb(0,0,0)`;
                 ctx.fillStyle = `rgb(0,0,0)`;
 
