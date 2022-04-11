@@ -21,8 +21,8 @@ const WhistlerStatus = () => {
         {"x":324,"y":597,"lift":"Excelerator Express"},
         {"x":358,"y":369,"lift":"Catskinner Express"},
         {"x":449,"y":463,"lift":"Catskinner Express"},
-        {"x":517,"y":694,"lift":"Magic Chair"},
-        {"x":546,"y":747,"lift":"Magic Chair"},
+        // {"x":517,"y":694,"lift":"Magic Chair"},
+        // {"x":546,"y":747,"lift":"Magic Chair"},
         {"x":327,"y":601,"lift":"Excalibur Gondola Upper"},
         {"x":541,"y":692,"lift":"Excalibur Gondola Upper"},
         {"x":541,"y":692,"lift":"Excalibur Gondola Lower"},
@@ -86,13 +86,16 @@ const WhistlerStatus = () => {
     const width = 1300; const height = 800;
 
     const [data, setData] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
     const lifts_svg = useRef();
 
     const update_data = useCallback(() => {
+        setLoading(true);
         fetch(url, {})
             .then(data => data.json())
             .then(json => setData(json))
-            .catch(err => console.log(err));
+            .catch(err => {console.log(err); setError(err.toString())});
     }, [setData]);
 
     useEffect(() => update_data(), [update_data]); //on startup, fetch the data
@@ -138,7 +141,10 @@ const WhistlerStatus = () => {
                                             };
 
         const lift_color = d => {
-            if (lift_name_to_index[d.lift]===undefined) console.log(d.lift);
+            if (lift_name_to_index[d.lift]===undefined) {
+                console.log(d.lift + " not found!");
+                return "red";
+            }
             return data.Lifts[lift_name_to_index[d.lift]].Status==="Open" ? "green" : "grey"
         };
 
@@ -171,11 +177,15 @@ const WhistlerStatus = () => {
                 .text(d=>d.lift.replace(" Upper",""))
                 .call(wrap_text, d=>Math.sqrt((d.y2-d.y1)**2+(d.x2-d.x1)**2));
         
-
+        setLoading(false);
     }, [data, lift_nodes, lift_links, wrap_text]);
 
     return <div id="whistler__content">
-        <svg id="whistler__svg" width={width} height={height}/>
+        {
+            error ? <p style={{textAlign:"center", color:"red"}}>{error}</p> : 
+                loading ? <p style={{textAlign:"center", color:"grey"}}>{"Loading..."}</p> : null
+        }
+        <svg id="whistler__svg" width={width} height={height} style={{display: (loading || error) ? "none" : "block"}}/>
         {
             data ? data.Date ? 
                 <p style={{textAlign:"center"}}>{"Data received at:"}<br />{(new Date(data.Date)).toString()}</p>
