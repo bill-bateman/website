@@ -58,13 +58,6 @@ module.exports = {
     			name: `computers`,
     		},
     	},
-    	{
-    		resolve: `gatsby-source-filesystem`,
-    		options: {
-    			path: `${__dirname}/src/content/resume/`,
-    			name: `resume`,
-    		},
-    	},
 	    {
 	      resolve: `gatsby-source-filesystem`,
 	      options: {
