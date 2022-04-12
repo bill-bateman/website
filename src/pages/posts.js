@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import PostLink from "../components/post-link"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 import FilterPosts from "../components/filter-posts"
 
 import "katex/dist/katex.min.css"

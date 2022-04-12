@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import Layout from "../components/layout"
+import Layout from "../components/layout/layoutmdx.js"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.

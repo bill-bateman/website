@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 
 import olomana from "../content/images/olomana.png"
 import linkedin from "../content/images/linkedin.png"
