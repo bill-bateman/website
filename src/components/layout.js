@@ -3,6 +3,7 @@ import {MDXProvider} from "@mdx-js/react"
 
 import banner from "../content/images/banner.jpg"
 import FigureText from "./shortcodes/FigureText.js"
+import MyImage from "./shortcodes/MyImage.js"
 
 function Banner() {
 	return (<div style={{minHeight:"75px"}}>
@@ -45,7 +46,7 @@ function GoatCounter() {
 	return (<script data-goatcounter="https://batemanzhouanalytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>)
 }
 
-const shortcodes = {FigureText};
+const shortcodes = {FigureText, MyImage};
 
 export default function Layout(props) {
   return (<MDXProvider components={shortcodes}>
