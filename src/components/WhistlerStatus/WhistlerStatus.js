@@ -3,6 +3,11 @@ import * as d3 from 'd3';
 
 import './WhistlerStatus.css';
 
+//NOTE:
+//this is no longer on the website
+//I was using a free tier Heroku dyno for this
+//but there is no longer a free tier (as of Nov 2022)
+
 const WhistlerStatus = () => {
 
     const lift_nodes = useMemo(() => [
