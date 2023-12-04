@@ -152,3 +152,7 @@ ul.nobullets {
 	margin-top: 0px;
 	font-style: italic;
 }
+
+li.email b {
+	display: none;
+}

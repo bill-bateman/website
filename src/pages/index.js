@@ -14,7 +14,7 @@ export default function Home() {
         I use this site for blog posts and personal projects.
         <ul className="nobullets">
           <li><b>Contact:</b></li>
-          <li><img alt="Mail Icon" width="15px" src={mail} />  bill at batemanzhou dot com</li>
+          <li className="email"><img alt="Mail Icon" width="15px" src={mail} />  <b>l</b>b<b>l</b>i<b>l</b>l<b>l</b>l<b>l</b> a<b>l</b>t b<b>l</b>at<b>l</b>ema<b>l</b>nzh<b>l</b>ou do<b>l</b>t co<b>l</b>m</li>
           <li><img alt="LinkedIn Icon" width="15px" src={linkedin} />  <a href="https://www.linkedin.com/in/wsbateman/">Bill Bateman | LinkedIn</a></li>
         </ul>
       </p>
