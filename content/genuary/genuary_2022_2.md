@@ -113,10 +113,10 @@ function do_dither(id, image_src, width, height, label_text) {
     };
 }
 
-do_dither("killarney", "/images/killarney.png", 1000, 526, "Killarney, Ontario");
+do_dither("killarney", "/images/killarney.jpeg", 1000, 526, "Killarney, Ontario");
 do_dither("chet", "/images/chet.png", 392, 295, "Chet Baker");
 do_dither("mountain", "/images/mountain.jpeg", 1528, 278, "BC");
-do_dither("olomana", "/images/olomana.png", 1000, 518, "Olomana");
+do_dither("olomana", "/images/olomana.jpeg", 1000, 518, "Olomana");
 do_dither("demondays", "/images/demon_days.jpeg", 728, 728, "Demon Days by Gorillaz");
 do_dither("moodvaliant", "/images/mood_valiant.jpeg", 944, 944, "Mood Valiant by Hiatus Kaiyote");
 do_dither("ykwtm", "/images/ykwtm.jpeg", 1200, 1200, "You Know What They Mean by Bent Knee");

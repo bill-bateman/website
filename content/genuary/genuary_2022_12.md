@@ -71,7 +71,7 @@ function circle_pack() {
 
 <div>
     <svg id="killarney__svg" width="600px" height="600px"></svg>
-    <img id="killarney__img" src="/images/killarney.png" width="600px" height="600px" style="display: none;" onload="circle_pack()" />
+    <img id="killarney__img" src="/images/killarney.jpeg" width="600px" height="600px" style="display: none;" onload="circle_pack()" />
     <canvas id="killarney__canvas" width="600px" height="600px" style="display: none;"></canvas>
 </div>
 

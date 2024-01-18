@@ -238,7 +238,7 @@ const do_fidenza = (id, image_src, width, height, label_text) => {
     };
 }
 
-do_fidenza("killarney", "/images/killarney.png", 800, 400, "Killarney, Ontario");
+do_fidenza("killarney", "/images/killarney.jpeg", 800, 400, "Killarney, Ontario");
 do_fidenza("chet", "/images/chet.png", 392, 295, "Chet Baker");
 do_fidenza("mountain", "/images/mountain.jpeg", 1528, 278, "BC");
 do_fidenza("demondays", "/images/demon_days.jpeg", 728, 728, "Demon Days by Gorillaz");

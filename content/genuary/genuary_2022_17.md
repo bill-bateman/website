@@ -102,8 +102,8 @@ const ThreeColors = (id, image_src, width, height) => {
     };
 }
 
-ThreeColors("killarney", "/images/killarney.png", 1000, 526);
+ThreeColors("killarney", "/images/killarney.jpeg", 1000, 526);
 ThreeColors("mountain", "/images/mountain.jpeg", 1528, 278);
-ThreeColors("olomana", "/images/olomana.png", 1000, 518);
+ThreeColors("olomana", "/images/olomana.jpeg", 1000, 518);
 
 </script>
