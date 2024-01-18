@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/global.css" />
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+        <link rel="icon" href="/images/favicon.png" type="image/png" />
+        <title>{title}</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+    <body>
+        <div style="min-height:'75px'">
+            <img class="banner" width="100%" height="50px" alt="Banner" src=/images/banner.jpg />
+            <div class="navbar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/posts.html">Posts</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1>{title}</h1>
+            <h2>{subtitle}</h2>
+        </div>
+        <div class="content">
+            {content}
+        </div>
+        <div class="footer">
+            <hr />
+            <ul>
+                <li><p style="text-align:left"><a href="/license.html">License Info</a></p></li>
+                <li><p style="text-align:right"><a href="https://github.com/bill-bateman/website">Website Source Code</a></p></li>
+            </ul>
+        </div>
+    </body>
+</html>

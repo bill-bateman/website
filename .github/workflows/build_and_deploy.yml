@@ -16,11 +16,10 @@ jobs:
 
       - name: Install
         run: |
-          npm install
-          npm install -g gatsby-cli
+          python3 -m pip install markdown
       
       - name: Build
-        run: gatsby build
+        run: python3 generate.py
       
       - name: Setup SSH
         env:

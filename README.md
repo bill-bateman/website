@@ -1,6 +1,6 @@
 # About
 
-Personal website using [Gatsby](https://www.gatsbyjs.com).
+Personal website using a dead simple static site generator based on [Python-Markdown](https://python-markdown.github.io/).
 
 Hosted at https://bill.batemanzhou.com.
 
