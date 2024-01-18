@@ -1,6 +1,6 @@
 ---
 title: "Straight No Chaser - Chet Baker's Solo"
-subtitle: "transcription / straight_no_chaser"
+subtitle: "transcriptions / straight_no_chaser"
 date: "2020-03-29"
 ---
 
