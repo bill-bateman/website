@@ -1,5 +1,5 @@
 ---
-title: "Using Github Actions to Deploy Gatsby Website"
+title: "Using Github Actions to Deploy Website"
 subtitle: "blog / github_actions
 date: "2021-08-10"
 ---
