@@ -3,9 +3,7 @@ title: "Bill Bateman"
 subtitle: "Personal Website"
 post: False
 ---
-
-My name is Bill. I am a software developer working remotely in British Columbia.
-
+My name is Bill. I am a software developer working remotely in British Columbia.<br/>
 I use this site for blog posts and personal projects.
 <ul class="nobullets">
     <li><b>Contact:</b></li>

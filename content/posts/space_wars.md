@@ -2,6 +2,7 @@
 title: "Space Wars - Verilog FPGA Project"
 subtitle: "games / space_wars"
 date: "2015-12-06"
+category: "games"
 ---
 
 _Last edited: 2021-02-22_

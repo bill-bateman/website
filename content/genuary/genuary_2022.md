@@ -1,7 +1,8 @@
 ---
 title: "Genuary 2022"
 date: "2022-01-03"
-subtitle: "art / genuary_2022"
+subtitle: "tech / genuary_2022"
+category: "tech"
 ---
 
 I decided to take part in [Genuary 2022](http://genuary.art/) and have some fun creating some generated art. I want to create all of these in code that can run on this website.

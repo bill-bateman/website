@@ -1,7 +1,8 @@
 ---
 title: "Circle Packing with D3, Python"
-subtitle: "blog / circle_packing"
+subtitle: "tech / circle_packing"
 date: "2021-12-09"
+category: "tech"
 ---
 
 ![Example Circle Pack](/images/circle_pack_example.png)

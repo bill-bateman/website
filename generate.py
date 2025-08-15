@@ -4,6 +4,7 @@ import glob
 import os
 import markdown
 import shutil
+from collections import defaultdict
 
 BLOG_PATH = "./content/**/*.md"
 PUBLIC = "public"
@@ -54,29 +55,66 @@ def handle_post(filename, html_str):
     
     return fields
 
-def create_posts_page(fields, base_html):
+def create_posts_category_page(category_name, category_fields, base_html):
     with open("post_format.html", 'r') as f:
         one_post = f.read()
     
     posts = []
-    fields.sort(key=lambda x: x.get("date", ""), reverse=True)
-    for f in fields:
+    category_fields.sort(key=lambda x: x.get("date", ""), reverse=True)
+    for f in category_fields:
         if not f['post']:
             # don't list index, license, and this page
             continue
         posts.append(one_post.format(
-            title=f['title'],
+            title=f.get("title"),
             subtitle=f.get("subtitle"),
             date=f.get("date"),
-            url=f['url'],
+            url=f.get("url"),
         ))
     
     html_str = base_html.format(
-        title="Posts",
+        title=category_name.capitalize(),
         subtitle="Sorted by date",
-        content='\n'.join(posts),
+        content="\n".join(posts),
     )
 
+    with open(f"{PUBLIC}/{category_name}_posts.html", "w") as f:
+        _ = f.write(html_str)
+
+def create_posts_page(fields, base_html):
+    # create the per-category post listing pages
+    category_to_posts = defaultdict(list)
+    for f in fields:
+        if not f.get("post", False):
+            # non-post pages include index, license, and this page
+            continue
+        category_to_posts[f["category"]].append(f)
+    
+    for (category_name, posts) in category_to_posts.items():
+        create_posts_category_page(category_name, posts, base_html)
+    
+    base_category_html = """
+<a class="listlink" href="{url}">
+    <p class="listtext">{text}</p>
+</a>
+"""
+    content = (
+        '<div class="categories">'
+        + '\n'.join(
+            base_category_html.format(
+                text=category_name.capitalize(),
+                url=f"{category_name}_posts.html"
+            )
+            for category_name in category_to_posts.keys()
+        ) + '</div>'
+    )
+
+    # create a page listing the category pages
+    html_str = base_html.format(
+        title="Post Categories",
+        subtitle="",
+        content=content,
+    )
     with open(f"{PUBLIC}/posts.html", 'w') as f:
         _ = f.write(html_str) 
 

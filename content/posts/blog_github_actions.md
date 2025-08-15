@@ -1,7 +1,8 @@
 ---
 title: "Using Github Actions to Deploy Website"
-subtitle: "blog / github_actions
+subtitle: "tech / github_actions
 date: "2021-08-10"
+category: "tech"
 ---
 
 _Last edited: 2024-01-14_

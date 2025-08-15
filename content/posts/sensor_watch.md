@@ -1,7 +1,8 @@
 ---
 title: "Sensor Watch"
-subtitle: "blog / sensor_watch"
+subtitle: "tech / sensor_watch"
 date: "2024-04-02"
+category: "tech"
 ---
 
 [Sensor Watch](https://www.sensorwatch.net/) is a board swap for the Casio F-91W by [Oddly Specific Objects](https://www.oddlyspecificobjects.com/) (Joey Castillo). 

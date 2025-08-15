@@ -1,7 +1,8 @@
 ---
 title: "Shofukan - Justin Stanton's Solo"
-subtitle: "transcriptions / shofukan"
+subtitle: "music / shofukan"
 date: "2020-02-05"
+category: "music"
 ---
 
 My first transcription!

@@ -154,3 +154,8 @@ ul.nobullets {
 li.email b {
 	display: none;
 }
+
+div.categories {
+	display: flex;
+	justify-content: space-around;
+}
