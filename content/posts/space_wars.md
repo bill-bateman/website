@@ -3,6 +3,7 @@ title: "Space Wars - Verilog FPGA Project"
 subtitle: "games / space_wars"
 date: "2015-12-06"
 category: "games"
+summary: "A 2 player space shooter for the Altera DE1-SoC FPGA development board."
 ---
 
 _Last edited: 2021-02-22_

@@ -3,6 +3,7 @@ title: "Adventures of Robot Boy"
 subtitle: "games / robot_boy"
 date: "2017-01-31"
 category: "games"
+summary: "A 3D platformer for a university game jam."
 ---
 
 _Last edited: 2021-02-22_

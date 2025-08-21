@@ -3,6 +3,7 @@ title: "DOG GAME"
 subtitle: "games / dog_game"
 date: "2019-01-31"
 category: "games"
+summary: "A basic sidescroller for a university game jam."
 ---
 
 _Last edited: 2021-02-24_

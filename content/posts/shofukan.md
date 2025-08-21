@@ -3,6 +3,7 @@ title: "Shofukan - Justin Stanton's Solo"
 subtitle: "music / shofukan"
 date: "2020-02-05"
 category: "music"
+summary: "Transcribing the trumpet solo of Justin Stanton's solo in Shofukan."
 ---
 
 My first transcription!

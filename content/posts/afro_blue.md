@@ -3,6 +3,7 @@ title: "Afro Blue - Paul Horn (Flute) and Emil Richards (Marimba)"
 subtitle: "music / afro_blue
 date: "2020-05-25"
 category: "music"
+summary: "A transcription of the flute and marima solos from the 1959 recording of Afro Blue."
 ---
 
 Afro Blue is such a great song - and here is a transcription of the Flute and Marimba solos from the original 1959 recording.

@@ -70,6 +70,7 @@ def create_posts_category_page(category_name, category_fields, base_html):
             subtitle=f.get("subtitle"),
             date=f.get("date"),
             url=f.get("url"),
+            summary=f.get("summary"),
         ))
     
     html_str = base_html.format(

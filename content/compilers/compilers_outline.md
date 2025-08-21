@@ -3,6 +3,7 @@ title: "Compilers Notes"
 subtitle: "tech / compilers"
 date: "2021-03-21"
 category: "tech"
+summary: "A summary of my notes from a compilers course I took."
 ---
 
 This is the outline of my notes from the University of Toronto course CSC467: Compilers. This resource should ideally be used to refresh knowledge. I would not recommend using it to learn the material from scratch, since this is a shortened form of my notes I used for review.

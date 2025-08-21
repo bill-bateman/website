@@ -3,6 +3,7 @@ title: "Using Github Actions to Deploy Website"
 subtitle: "tech / github_actions
 date: "2021-08-10"
 category: "tech"
+summary: "How I use GitHub Actions to deploy this website."
 ---
 
 _Last edited: 2024-01-14_

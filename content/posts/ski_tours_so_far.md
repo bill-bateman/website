@@ -3,6 +3,7 @@ title: "First Ski Tours"
 subtitle: "adventure / ski_tours"
 date: "2022-04-11"
 category: "adventure"
+summary: "Some notes from backcountry ski tours in 2021-2022."
 ---
 
 I've been getting a lot more into skiing recently. A natural meshing of two of my interests (backcountry hiking and skiing) is going ski touring! Skinning up mountains, bootpacking when it gets too steep, threat of avalanche, all for those sweet untracked turns. What's not to love? Here are some notes from the first year of touring. Please note that we don't do this alone, we are new to this and so always go with someone who knows what they are doing. Avalanches are no joke. Don't go backcountry without gear & someone with the right knowledge/experience.

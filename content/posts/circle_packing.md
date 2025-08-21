@@ -3,6 +3,7 @@ title: "Circle Packing with D3, Python"
 subtitle: "tech / circle_packing"
 date: "2021-12-09"
 category: "tech"
+summary: "Porting D3 circle packing to Python."
 ---
 
 ![Example Circle Pack](/images/circle_pack_example.png)

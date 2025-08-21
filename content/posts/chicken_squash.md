@@ -3,6 +3,7 @@ title: "Chicken Squash"
 subtitle: "games / chicken_squash"
 date: "2020-01-31"
 category: "games"
+summary: "A quick, silly game where you pass an egg back and forth between 2 chickens."
 ---
 
 _Last edited: 2021-02-22_
