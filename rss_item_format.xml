@@ -1,0 +1,7 @@
+<item>
+    <title>{title}</title>
+    <description>{description}</description>
+    <link>{link}</link>
+    <category>{category}</category>
+    <pubDate>{pubDate}</pubDate>
+</item>

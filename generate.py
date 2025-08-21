@@ -5,6 +5,8 @@ import os
 import markdown
 import shutil
 from collections import defaultdict
+from datetime import datetime
+from email.utils import format_datetime
 
 BLOG_PATH = "./content/**/*.md"
 PUBLIC = "public"
@@ -119,6 +121,33 @@ def create_posts_page(fields, base_html):
     with open(f"{PUBLIC}/posts.html", 'w') as f:
         _ = f.write(html_str) 
 
+def create_rss(fields):
+    with open("rss_format.xml", "r") as f:
+        base_rss = f.read()
+    
+    with open("rss_item_format.xml", "r") as f:
+        rss_item = f.read()
+    
+    items = []
+    for f in fields:
+        if not f.get("post", False):
+            # non-post pages include index, license
+            continue
+        items.append(rss_item.format(
+            title=f.get("title"),
+            description=f.get("summary"),
+            link="https://bill.batemanzhou.com/" + f.get("url"),
+            category=f.get("category"),
+            # format date nicely
+            pubDate=format_datetime(datetime.strptime(f.get("date"), '%Y-%m-%d')),
+        ))
+    
+    rss_str = base_rss.format(
+        items="\n".join(items),
+    )
+
+    with open(f"{PUBLIC}/rss.xml", 'w') as f:
+        _ = f.write(rss_str)
 
 def main():
     # replace existing files
@@ -135,6 +164,9 @@ def main():
     
     # create a page listing all posts
     create_posts_page(fields, base_html)
+
+    # make the rss feed
+    create_rss(fields)
         
 
 if __name__=="__main__":
