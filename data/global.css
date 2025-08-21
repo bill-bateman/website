@@ -40,7 +40,7 @@ blockquote {
 .navbar ul li {
 	display: inline;
 	float: left;
-	width: 50%;
+	width: 33%;
 }
 .navbar ul li a {
 	display: block;

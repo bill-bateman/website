@@ -62,7 +62,6 @@ def create_posts_category_page(category_name, category_fields, base_html):
         one_post = f.read()
     
     posts = []
-    category_fields.sort(key=lambda x: x.get("date", ""), reverse=True)
     for f in category_fields:
         if not f['post']:
             # don't list index, license, and this page
@@ -161,6 +160,7 @@ def main():
 
     posts = [filename for filename in get_all_markdown()]
     fields = [handle_post(post, base_html) for post in posts]
+    fields.sort(key=lambda x: x.get("date", "1970-1-1"), reverse=True) # sort with newest posts first
     
     # create a page listing all posts
     create_posts_page(fields, base_html)
