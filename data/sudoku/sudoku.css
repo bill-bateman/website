@@ -21,6 +21,12 @@
 .sudoku-mode {
 	display: flex;
 	width: fit-content;
+}
+.sudoku-mode-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
 	margin: 1rem auto;
 }
 .sudoku-difficulty button,
@@ -42,8 +48,6 @@
 	font-weight: bold;
 }
 .sudoku-autonotes {
-	display: block;
-	margin: -0.25rem auto 1rem;
 	padding: 0.4rem 0.9rem;
 	font-size: 1rem;
 	border: 1px solid #333;
