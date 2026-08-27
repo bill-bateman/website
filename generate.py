@@ -46,6 +46,7 @@ def handle_post(filename, html_str):
         title=fields["title"],
         subtitle=fields.get("date") or fields.get("subtitle"),
         content=markdown.markdown(md, extensions=['fenced_code', 'sane_lists']),
+        extra_headers="",
     )
 
     name = filename.split('/')[-1].split('.')[0]
@@ -78,9 +79,25 @@ def create_posts_page(fields, base_html):
         title="Posts",
         subtitle="Sorted by date",
         content="\n".join(posts),
+        extra_headers="",
     )
 
     with open(f"{PUBLIC}/posts.html", "w") as f:
+        _ = f.write(html_str)
+
+def create_sudoku_page(base_html):
+    with open("content/sudoku_game.html", "r") as f:
+        game_html = f.read()
+
+    html_str = base_html.format(
+        title="Sudoku",
+        subtitle="",
+        content=game_html,
+        extra_headers='<link rel="manifest" href="manifest.webmanifest">',
+    )
+
+    os.makedirs(f"{PUBLIC}/sudoku", exist_ok=True)
+    with open(f"{PUBLIC}/sudoku/index.html", "w") as f:
         _ = f.write(html_str)
 
 def create_rss(fields):
@@ -127,6 +144,9 @@ def main():
     
     # create a page listing all posts
     create_posts_page(fields, base_html)
+
+    # standalone sudoku game (offline-capable, its own /sudoku/ folder)
+    create_sudoku_page(base_html)
 
     # make the rss feed
     create_rss(fields)

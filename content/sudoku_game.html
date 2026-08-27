@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="sudoku.css" />
+
+<div id="sudoku">
+    <div class="sudoku-controls">
+        <div id="sudoku-difficulty" class="sudoku-difficulty" role="group" aria-label="Difficulty">
+            <button type="button" data-diff="easy">Easy</button>
+            <button type="button" data-diff="medium" class="active" aria-pressed="true">Medium</button>
+            <button type="button" data-diff="hard">Hard</button>
+        </div>
+        <button id="sudoku-new" type="button" class="sudoku-restart" aria-label="New game, same difficulty" title="New game">&#8635;</button>
+    </div>
+
+    <div id="sudoku-board" class="sudoku-board"></div>
+
+    <p id="sudoku-status" class="sudoku-status" aria-live="polite"></p>
+
+    <div id="sudoku-pad" class="sudoku-pad">
+        <button type="button" data-num="1">1</button>
+        <button type="button" data-num="2">2</button>
+        <button type="button" data-num="3">3</button>
+        <button type="button" data-num="4">4</button>
+        <button type="button" data-num="5">5</button>
+        <button type="button" data-num="6">6</button>
+        <button type="button" data-num="7">7</button>
+        <button type="button" data-num="8">8</button>
+        <button type="button" data-num="9">9</button>
+        <button type="button" data-num="0" class="sudoku-erase">Erase</button>
+    </div>
+
+    <p class="sudoku-hint">Tap a cell, then a number. Arrow keys and number keys work too.</p>
+</div>
+
+<script src="sudoku.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('sw.js');
+        });
+    }
+</script>

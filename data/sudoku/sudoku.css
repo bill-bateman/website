@@ -1,0 +1,102 @@
+#sudoku {
+	max-width: 30rem;
+	margin: 0 auto;
+}
+
+.sudoku-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+.sudoku-difficulty {
+	display: inline-flex;
+	border: 1px solid #333;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.sudoku-difficulty button {
+	padding: 0.4rem 0.9rem;
+	font-size: 1rem;
+	border: none;
+	border-left: 1px solid #333;
+	background: #fff;
+	color: #1a4b8c;
+	cursor: pointer;
+}
+.sudoku-difficulty button:first-child { border-left: none; }
+.sudoku-difficulty button.active {
+	background: #1a4b8c;
+	color: #fff;
+	font-weight: bold;
+}
+.sudoku-restart {
+	padding: 0.4rem 0.7rem;
+	font-size: 1.1rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.sudoku-board {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border: 2px solid #333;
+	box-sizing: border-box;
+}
+
+.sudoku-cell {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #cfcfcf;
+	font-size: clamp(1rem, 6vw, 1.6rem);
+	line-height: 1;
+	cursor: pointer;
+	user-select: none;
+	background: #fff;
+	color: #1a4b8c;
+}
+.sudoku-cell.br { border-right: 2px solid #333; }
+.sudoku-cell.bb { border-bottom: 2px solid #333; }
+.sudoku-cell.given {
+	color: #000;
+	font-weight: bold;
+	cursor: default;
+}
+.sudoku-cell.selected { background: #d7e8ff; }
+.sudoku-cell.peer { background: #eef3fb; }
+.sudoku-cell.conflict {
+	background: #ffd9d9;
+	color: #b00020;
+}
+.sudoku-cell.selected.conflict { background: #ffc2c2; }
+
+.sudoku-status {
+	text-align: center;
+	min-height: 1.5rem;
+	margin: 1rem 0;
+	font-weight: bold;
+}
+.sudoku-status.solved { color: #0a7d28; }
+
+.sudoku-pad {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 0.4rem;
+}
+.sudoku-pad button {
+	padding: 0.75rem 0;
+	font-size: 1.15rem;
+	cursor: pointer;
+}
+
+.sudoku-hint {
+	text-align: center;
+	font-size: smaller;
+	color: grey;
+	font-style: italic;
+}
