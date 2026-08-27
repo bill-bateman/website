@@ -5,7 +5,6 @@
 	var GIVENS = { easy: 42, medium: 34, hard: 28 };
 
 	var boardEl = document.getElementById('sudoku-board');
-	var statusEl = document.getElementById('sudoku-status');
 	var padEl = document.getElementById('sudoku-pad');
 	var diffEl = document.getElementById('sudoku-difficulty');
 	var modeEl = document.getElementById('sudoku-mode');
@@ -309,18 +308,13 @@
 	}
 
 	function checkWin() {
+		// a full board with no unit conflicts must be the (unique) solution;
+		// a full board with mistakes always has a conflict, already shown in red.
+		var solved = true;
 		for (var i = 0; i < 81; i++) {
-			if (current[i] === 0) { setStatus('', false); return; }
+			if (current[i] === 0 || current[i] !== solution[i]) { solved = false; break; }
 		}
-		for (var j = 0; j < 81; j++) {
-			if (current[j] !== solution[j]) { setStatus('Not quite — check for mistakes.', false); return; }
-		}
-		setStatus('Solved!', true);
-	}
-
-	function setStatus(msg, solved) {
-		statusEl.textContent = msg;
-		statusEl.classList.toggle('solved', !!solved);
+		boardEl.classList.toggle('solved', solved);
 	}
 
 	function setDifficulty(d) {
@@ -388,8 +382,8 @@
 	}
 
 	function newGame() {
-		setStatus('Generating…', false);
-		// defer so the status text paints before the (blocking) generator runs
+		boardEl.classList.add('loading');
+		// defer so the loading state paints before the (blocking) generator runs
 		setTimeout(function () {
 			var g = generate(difficulty);
 			puzzle = g.puzzle;
@@ -398,9 +392,10 @@
 			marks = emptyMarks();
 			noteEdits = emptyNoteEdits();
 			selected = -1;
-			setStatus('', false);
 			save();
 			render();
+			boardEl.classList.remove('solved');
+			boardEl.classList.remove('loading');
 			recomputeNotes();
 		}, 20);
 	}
