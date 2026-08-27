@@ -11,13 +11,20 @@
 	gap: 0.5rem;
 	margin-bottom: 1rem;
 }
-.sudoku-difficulty {
+.sudoku-difficulty,
+.sudoku-mode {
 	display: inline-flex;
 	border: 1px solid #333;
 	border-radius: 4px;
 	overflow: hidden;
 }
-.sudoku-difficulty button {
+.sudoku-mode {
+	display: flex;
+	width: fit-content;
+	margin: 1rem auto;
+}
+.sudoku-difficulty button,
+.sudoku-mode button {
 	padding: 0.4rem 0.9rem;
 	font-size: 1rem;
 	border: none;
@@ -26,8 +33,10 @@
 	color: #666;
 	cursor: pointer;
 }
-.sudoku-difficulty button:first-child { border-left: none; }
-.sudoku-difficulty button.active {
+.sudoku-difficulty button:first-child,
+.sudoku-mode button:first-child { border-left: none; }
+.sudoku-difficulty button.active,
+.sudoku-mode button.active {
 	background: #333;
 	color: #fff;
 	font-weight: bold;
@@ -61,6 +70,24 @@
 	font-weight: bold;
 	cursor: default;
 }
+.sudoku-cell.has-marks { padding: 0; }
+.sudoku-marks {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	width: 100%;
+	height: 100%;
+	font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+	line-height: 1;
+	font-weight: normal;
+	color: #888;
+}
+.sudoku-marks span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .sudoku-cell.selected { background: #d7e8ff; }
 .sudoku-cell.peer { background: #eef3fb; }
 .sudoku-cell.conflict {
@@ -71,8 +98,8 @@
 
 .sudoku-status {
 	text-align: center;
-	min-height: 1.5rem;
-	margin: 1rem 0;
+	min-height: 0;
+	margin: 0;
 	font-weight: bold;
 }
 .sudoku-status.solved { color: #0a7d28; }

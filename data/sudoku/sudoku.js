@@ -8,12 +8,23 @@
 	var statusEl = document.getElementById('sudoku-status');
 	var padEl = document.getElementById('sudoku-pad');
 	var diffEl = document.getElementById('sudoku-difficulty');
+	var modeEl = document.getElementById('sudoku-mode');
 
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
 	var current = [];  // 81 ints, full board state (givens + player entries)
 	var solution = []; // 81 ints, the (unique) completed grid
+	var marks = [];    // 81 arrays of 9 booleans, player's pencil marks for empty cells
 	var selected = -1;
 	var difficulty = 'medium';
+	var mode = 'answer'; // 'answer' fills the cell, 'notes' toggles pencil marks
+
+	function blankCell() { return [false, false, false, false, false, false, false, false, false]; }
+
+	function emptyMarks() {
+		var m = [];
+		for (var i = 0; i < 81; i++) m.push(blankCell());
+		return m;
+	}
 
 	// ---- solver / generator ----
 
@@ -128,13 +139,39 @@
 			if (puzzle[i] !== 0) {
 				cell.className += ' given';
 				cell.textContent = puzzle[i];
-			} else if (current[i] !== 0) {
-				cell.textContent = current[i];
 			}
 			cell.setAttribute('data-idx', i);
 			boardEl.appendChild(cell);
+			if (puzzle[i] === 0) paintCell(i);
 		}
 		applyHighlights();
+	}
+
+	function paintCell(idx) {
+		// render the mutable contents of one non-given cell: value, or pencil marks
+		var cell = boardEl.children[idx];
+		if (!cell || puzzle[idx] !== 0) return;
+		cell.innerHTML = '';
+		if (current[idx] !== 0) {
+			cell.classList.remove('has-marks');
+			cell.textContent = current[idx];
+			return;
+		}
+		var cm = marks[idx], any = false, k;
+		for (k = 0; k < 9; k++) if (cm[k]) { any = true; break; }
+		if (!any) {
+			cell.classList.remove('has-marks');
+			return;
+		}
+		cell.classList.add('has-marks');
+		var wrap = document.createElement('div');
+		wrap.className = 'sudoku-marks';
+		for (var n = 0; n < 9; n++) {
+			var s = document.createElement('span');
+			s.textContent = cm[n] ? (n + 1) : '';
+			wrap.appendChild(s);
+		}
+		cell.appendChild(wrap);
 	}
 
 	function peers(idx) {
@@ -200,9 +237,17 @@
 
 	function enter(num) {
 		if (selected < 0 || puzzle[selected] !== 0) return;
-		current[selected] = num;
-		var cell = boardEl.children[selected];
-		cell.textContent = num === 0 ? '' : num;
+		if (mode === 'notes') {
+			if (num === 0) {
+				marks[selected] = blankCell();
+			} else if (current[selected] === 0) {
+				marks[selected][num - 1] = !marks[selected][num - 1];
+			}
+		} else {
+			current[selected] = num;
+			if (num !== 0) marks[selected] = blankCell();
+		}
+		paintCell(selected);
 		save();
 		applyHighlights();
 		checkWin();
@@ -245,6 +290,17 @@
 		}
 	}
 
+	function setMode(m) {
+		if (m !== 'answer' && m !== 'notes') return;
+		mode = m;
+		var btns = modeEl.children;
+		for (var i = 0; i < btns.length; i++) {
+			var on = btns[i].getAttribute('data-mode') === m;
+			btns[i].classList.toggle('active', on);
+			btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+		}
+	}
+
 	// ---- persistence ----
 
 	function save() {
@@ -253,6 +309,7 @@
 				puzzle: puzzle,
 				current: current,
 				solution: solution,
+				marks: marks,
 				difficulty: difficulty
 			}));
 		} catch (e) { /* storage unavailable, no-op */ }
@@ -266,6 +323,7 @@
 			puzzle = data.puzzle;
 			current = data.current;
 			solution = data.solution;
+			marks = (data.marks && data.marks.length === 81) ? data.marks : emptyMarks();
 			if (data.difficulty) setDifficulty(data.difficulty);
 			return true;
 		} catch (e) {
@@ -281,6 +339,7 @@
 			puzzle = g.puzzle;
 			solution = g.solution;
 			current = puzzle.slice();
+			marks = emptyMarks();
 			selected = -1;
 			setStatus('', false);
 			save();
@@ -314,6 +373,12 @@
 		if (!btn) return;
 		setDifficulty(btn.getAttribute('data-diff'));
 		newGame();
+	});
+
+	modeEl.addEventListener('click', function (e) {
+		var btn = e.target.closest('button');
+		if (!btn) return;
+		setMode(btn.getAttribute('data-mode'));
 	});
 
 	if (load()) {

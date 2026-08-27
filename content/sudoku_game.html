@@ -13,6 +13,11 @@
 
     <p id="sudoku-status" class="sudoku-status" aria-live="polite"></p>
 
+    <div id="sudoku-mode" class="sudoku-mode" role="group" aria-label="Input mode">
+        <button type="button" data-mode="answer" class="active" aria-pressed="true">Answer</button>
+        <button type="button" data-mode="notes" aria-pressed="false">Notes</button>
+    </div>
+
     <div id="sudoku-pad" class="sudoku-pad">
         <button type="button" data-num="1">1</button>
         <button type="button" data-num="2">2</button>
