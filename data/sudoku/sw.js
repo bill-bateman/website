@@ -1,10 +1,11 @@
-var CACHE = 'sudoku-v2';
+var CACHE = 'sudoku-v3';
 
 // Must cache for the game to work offline at all.
 var CORE = [
 	'./',
 	'index.html',
 	'sudoku.css',
+	'sudoku-generator.js',
 	'sudoku.js',
 	'manifest.webmanifest'
 ];
