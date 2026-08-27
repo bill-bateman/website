@@ -7,7 +7,6 @@
 	var boardEl = document.getElementById('sudoku-board');
 	var statusEl = document.getElementById('sudoku-status');
 	var padEl = document.getElementById('sudoku-pad');
-	var newBtn = document.getElementById('sudoku-new');
 	var diffEl = document.getElementById('sudoku-difficulty');
 
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
@@ -310,7 +309,6 @@
 		e.preventDefault();
 	});
 
-	newBtn.addEventListener('click', newGame);
 	diffEl.addEventListener('click', function (e) {
 		var btn = e.target.closest('button');
 		if (!btn) return;
