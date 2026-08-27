@@ -1,5 +1,5 @@
 {
-	"name": "Sudoku",
+	"name": "Bill Sudoku",
 	"short_name": "Sudoku",
 	"start_url": ".",
 	"scope": "/sudoku/",
