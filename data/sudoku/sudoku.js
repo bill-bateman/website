@@ -9,20 +9,30 @@
 	var padEl = document.getElementById('sudoku-pad');
 	var diffEl = document.getElementById('sudoku-difficulty');
 	var modeEl = document.getElementById('sudoku-mode');
+	var autoNotesEl = document.getElementById('sudoku-autonotes');
 
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
 	var current = [];  // 81 ints, full board state (givens + player entries)
 	var solution = []; // 81 ints, the (unique) completed grid
 	var marks = [];    // 81 arrays of 9 booleans, player's pencil marks for empty cells
+	var noteEdits = []; // 81 arrays of 9 ints: 0 defer to auto, 1 forced on, -1 forced off
 	var selected = -1;
 	var difficulty = 'medium';
 	var mode = 'answer'; // 'answer' fills the cell, 'notes' toggles pencil marks
+	var autoNotes = false; // when on, pencil marks track the board automatically
 
 	function blankCell() { return [false, false, false, false, false, false, false, false, false]; }
+	function zeroEdits() { return [0, 0, 0, 0, 0, 0, 0, 0, 0]; }
 
 	function emptyMarks() {
 		var m = [];
 		for (var i = 0; i < 81; i++) m.push(blankCell());
+		return m;
+	}
+
+	function emptyNoteEdits() {
+		var m = [];
+		for (var i = 0; i < 81; i++) m.push(zeroEdits());
 		return m;
 	}
 
@@ -174,6 +184,30 @@
 		cell.appendChild(wrap);
 	}
 
+	// ---- auto-notes ----
+
+	function autoCandidates(idx) {
+		// naive row/col/box candidates for an empty, non-given cell
+		var cand = blankCell();
+		if (puzzle[idx] !== 0 || current[idx] !== 0) return cand;
+		for (var v = 1; v <= 9; v++) cand[v - 1] = canPlace(current, idx, v);
+		return cand;
+	}
+
+	function recomputeNotes() {
+		// re-derive every cell's pencil marks from the board, then reapply user overrides
+		if (!autoNotes) return;
+		for (var i = 0; i < 81; i++) {
+			if (puzzle[i] !== 0 || current[i] !== 0) { marks[i] = blankCell(); continue; }
+			var base = autoCandidates(i), row = marks[i] = blankCell();
+			for (var d = 0; d < 9; d++) {
+				var e = noteEdits[i][d];
+				row[d] = e === 1 ? true : e === -1 ? false : base[d];
+			}
+		}
+		for (var k = 0; k < 81; k++) paintCell(k);
+	}
+
 	function peers(idx) {
 		if (idx < 0) return {};
 		var r = Math.floor(idx / 9), c = idx % 9;
@@ -240,12 +274,22 @@
 		if (mode === 'notes') {
 			if (num === 0) {
 				marks[selected] = blankCell();
+				if (autoNotes) { for (var d = 0; d < 9; d++) noteEdits[selected][d] = -1; }
 			} else if (current[selected] === 0) {
-				marks[selected][num - 1] = !marks[selected][num - 1];
+				var want = !marks[selected][num - 1];
+				if (autoNotes) {
+					var base = autoCandidates(selected)[num - 1];
+					noteEdits[selected][num - 1] = want === base ? 0 : want ? 1 : -1;
+				}
+				marks[selected][num - 1] = want;
 			}
 		} else {
 			current[selected] = num;
 			if (num !== 0) marks[selected] = blankCell();
+			if (autoNotes) {
+				noteEdits[selected] = zeroEdits();
+				recomputeNotes();
+			}
 		}
 		paintCell(selected);
 		save();
@@ -301,6 +345,14 @@
 		}
 	}
 
+	function setAutoNotes(on) {
+		autoNotes = !!on;
+		if (autoNotesEl) {
+			autoNotesEl.classList.toggle('active', autoNotes);
+			autoNotesEl.setAttribute('aria-pressed', autoNotes ? 'true' : 'false');
+		}
+	}
+
 	// ---- persistence ----
 
 	function save() {
@@ -310,6 +362,8 @@
 				current: current,
 				solution: solution,
 				marks: marks,
+				noteEdits: noteEdits,
+				autoNotes: autoNotes,
 				difficulty: difficulty
 			}));
 		} catch (e) { /* storage unavailable, no-op */ }
@@ -324,6 +378,8 @@
 			current = data.current;
 			solution = data.solution;
 			marks = (data.marks && data.marks.length === 81) ? data.marks : emptyMarks();
+			noteEdits = (data.noteEdits && data.noteEdits.length === 81) ? data.noteEdits : emptyNoteEdits();
+			setAutoNotes(data.autoNotes);
 			if (data.difficulty) setDifficulty(data.difficulty);
 			return true;
 		} catch (e) {
@@ -340,10 +396,12 @@
 			solution = g.solution;
 			current = puzzle.slice();
 			marks = emptyMarks();
+			noteEdits = emptyNoteEdits();
 			selected = -1;
 			setStatus('', false);
 			save();
 			render();
+			recomputeNotes();
 		}, 20);
 	}
 
@@ -381,8 +439,23 @@
 		setMode(btn.getAttribute('data-mode'));
 	});
 
+	if (autoNotesEl) {
+		autoNotesEl.addEventListener('click', function () {
+			setAutoNotes(!autoNotes);
+			noteEdits = emptyNoteEdits();
+			if (autoNotes) {
+				recomputeNotes(); // fresh reseed; also the "reset notes" action
+			} else {
+				marks = emptyMarks(); // leaving auto-notes clears the notes
+				for (var i = 0; i < 81; i++) paintCell(i);
+			}
+			save();
+		});
+	}
+
 	if (load()) {
 		render();
+		recomputeNotes();
 		checkWin();
 	} else {
 		newGame();

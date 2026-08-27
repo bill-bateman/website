@@ -41,6 +41,22 @@
 	color: #fff;
 	font-weight: bold;
 }
+.sudoku-autonotes {
+	display: block;
+	margin: -0.25rem auto 1rem;
+	padding: 0.4rem 0.9rem;
+	font-size: 1rem;
+	border: 1px solid #333;
+	border-radius: 4px;
+	background: #fff;
+	color: #666;
+	cursor: pointer;
+}
+.sudoku-autonotes.active {
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+}
 .sudoku-board {
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
