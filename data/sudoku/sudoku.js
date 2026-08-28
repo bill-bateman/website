@@ -2,9 +2,6 @@
 	'use strict';
 
 	var STORAGE_KEY = 'sudoku-game-v1';
-	
-	var canPlace = SudokuGenerator.canPlace;
-	var generate = SudokuGenerator.generate;
 
 	var boardEl = document.getElementById('sudoku-board');
 	var padEl = document.getElementById('sudoku-pad');
@@ -91,7 +88,7 @@
 		// naive row/col/box candidates for an empty, non-given cell
 		var cand = blankCell();
 		if (puzzle[idx] !== 0 || current[idx] !== 0) return cand;
-		for (var v = 1; v <= 9; v++) cand[v - 1] = canPlace(current, idx, v);
+		for (var v = 1; v <= 9; v++) cand[v - 1] = SudokuUtils.canPlace(current, idx, v);
 		return cand;
 	}
 
@@ -282,23 +279,23 @@
 		}
 	}
 
+	function installGame(g) {
+		puzzle = g.puzzle;
+		solution = g.solution;
+		current = puzzle.slice();
+		marks = emptyMarks();
+		noteEdits = emptyNoteEdits();
+		selected = -1;
+		save();
+		render();
+		boardEl.classList.remove('solved');
+		boardEl.classList.remove('loading');
+		recomputeNotes();
+	}
+
 	function newGame() {
 		boardEl.classList.add('loading');
-		// defer so the loading state paints before the (blocking) generator runs
-		setTimeout(function () {
-			var g = generate(difficulty);
-			puzzle = g.puzzle;
-			solution = g.solution;
-			current = puzzle.slice();
-			marks = emptyMarks();
-			noteEdits = emptyNoteEdits();
-			selected = -1;
-			save();
-			render();
-			boardEl.classList.remove('solved');
-			boardEl.classList.remove('loading');
-			recomputeNotes();
-		}, 20);
+		SudokuSource.requestPuzzle(difficulty, installGame);
 	}
 
 	boardEl.addEventListener('click', function (e) {
