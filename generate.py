@@ -97,7 +97,7 @@ def create_sudoku_page(base_html):
         game_html = f.read()
 
     html_str = base_html.format(
-        title="Sudoku",
+        title="Sloth Sudoku",
         subtitle="",
         content=game_html,
         extra_headers='<link rel="manifest" href="manifest.webmanifest">',

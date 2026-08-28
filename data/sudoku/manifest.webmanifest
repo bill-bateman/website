@@ -1,6 +1,6 @@
 {
-	"name": "Bill Sudoku",
-	"short_name": "Sudoku",
+	"name": "Sloth Sudoku",
+	"short_name": "Sloth Sudoku",
 	"start_url": ".",
 	"scope": "/sudoku/",
 	"display": "standalone",
