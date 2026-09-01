@@ -9,6 +9,7 @@
 	var modeEl = document.getElementById('sudoku-mode');
 	var autoNotesEl = document.getElementById('sudoku-autonotes');
 	var clearEl = document.getElementById('sudoku-clear');
+	var resetNotesEl = document.getElementById('sudoku-reset-notes');
 
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
 	var current = [];  // 81 ints, full board state (givens + player entries)
@@ -322,6 +323,20 @@
 		recomputeNotes();
 	}
 
+	function resetNotes() {
+		// clear both notes stores but leave the board entries alone
+		manualMarks = emptyMarks();
+		noteEdits = emptyNoteEdits();
+		if (autoNotes) {
+			marks = emptyMarks();
+			recomputeNotes();
+		} else {
+			marks = manualMarks;
+			for (var i = 0; i < 81; i++) paintCell(i);
+		}
+		save();
+	}
+
 	boardEl.addEventListener('click', function (e) {
 		var cell = e.target.closest('.sudoku-cell');
 		if (!cell) return;
@@ -352,6 +367,10 @@
 
 	if (clearEl) {
 		clearEl.addEventListener('click', clearBoard);
+	}
+
+	if (resetNotesEl) {
+		resetNotesEl.addEventListener('click', resetNotes);
 	}
 
 	modeEl.addEventListener('click', function (e) {

@@ -133,13 +133,14 @@
 	gap: 0.4rem;
 }
 .sudoku-pad button,
-.sudoku-clear {
+.sudoku-actions button {
 	padding: 0.75rem 0;
 	font-size: 1.15rem;
 	cursor: pointer;
 }
-.sudoku-clear {
-	display: block;
-	width: calc((100% - 1.6rem) / 5);
-	margin: 1.2rem auto 0;
+.sudoku-actions {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.4rem;
+	margin-top: 1.2rem;
 }
