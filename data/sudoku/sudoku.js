@@ -13,8 +13,12 @@
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
 	var current = [];  // 81 ints, full board state (givens + player entries)
 	var solution = []; // 81 ints, the (unique) completed grid
-	var marks = [];    // 81 arrays of 9 booleans, player's pencil marks for empty cells
+	var marks = [];    // 81 arrays of 9 booleans, the pencil marks currently on screen
+	var manualMarks = []; // 81 arrays of 9 booleans, the manual-mode notes store
 	var noteEdits = []; // 81 arrays of 9 ints: 0 defer to auto, 1 forced on, -1 forced off
+	// marks is aliased to manualMarks while auto-notes is off; while it is on, marks is
+	// a computed buffer and the two stores (manualMarks, noteEdits) sit untouched so
+	// toggling the mode swaps between them without discarding either.
 	var selected = -1;
 	var difficulty = 'medium';
 	var mode = 'answer'; // 'answer' fills the cell, 'notes' toggles pencil marks
@@ -255,6 +259,7 @@
 				current: current,
 				solution: solution,
 				marks: marks,
+				manualMarks: manualMarks,
 				noteEdits: noteEdits,
 				autoNotes: autoNotes,
 				difficulty: difficulty
@@ -271,8 +276,12 @@
 			current = data.current;
 			solution = data.solution;
 			marks = (data.marks && data.marks.length === 81) ? data.marks : emptyMarks();
+			manualMarks = (data.manualMarks && data.manualMarks.length === 81) ? data.manualMarks
+			: (!data.autoNotes && data.marks && data.marks.length === 81) ? data.marks
+			: emptyMarks();
 			noteEdits = (data.noteEdits && data.noteEdits.length === 81) ? data.noteEdits : emptyNoteEdits();
 			setAutoNotes(data.autoNotes);
+			if (!autoNotes) marks = manualMarks;
 			if (data.difficulty) setDifficulty(data.difficulty);
 			return true;
 		} catch (e) {
@@ -284,7 +293,8 @@
 		puzzle = g.puzzle;
 		solution = g.solution;
 		current = puzzle.slice();
-		marks = emptyMarks();
+		manualMarks = emptyMarks();
+		marks = autoNotes ? emptyMarks() : manualMarks;
 		noteEdits = emptyNoteEdits();
 		selected = -1;
 		save();
@@ -302,7 +312,8 @@
 	function clearBoard() {
 		// wipe every player entry but keep the same puzzle
 		current = puzzle.slice();
-		marks = emptyMarks();
+		manualMarks = emptyMarks();
+		marks = autoNotes ? emptyMarks() : manualMarks;
 		noteEdits = emptyNoteEdits();
 		selected = -1;
 		save();
@@ -352,11 +363,14 @@
 	if (autoNotesEl) {
 		autoNotesEl.addEventListener('click', function () {
 			setAutoNotes(!autoNotes);
-			noteEdits = emptyNoteEdits();
 			if (autoNotes) {
-				recomputeNotes(); // fresh reseed; also the "reset notes" action
+				// entering auto-notes: keep manualMarks as-is, show a buffer
+				// rebuilt from the (persisted) noteEdits overrides
+				marks = emptyMarks();
+				recomputeNotes();
 			} else {
-				marks = emptyMarks(); // leaving auto-notes clears the notes
+				// leaving auto-notes: bring back the manual notes untouched
+				marks = manualMarks;
 				for (var i = 0; i < 81; i++) paintCell(i);
 			}
 			save();
