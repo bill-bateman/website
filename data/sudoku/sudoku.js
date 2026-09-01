@@ -8,6 +8,7 @@
 	var diffEl = document.getElementById('sudoku-difficulty');
 	var modeEl = document.getElementById('sudoku-mode');
 	var autoNotesEl = document.getElementById('sudoku-autonotes');
+	var clearEl = document.getElementById('sudoku-clear');
 
 	var puzzle = [];   // 81 ints, non-zero entries are the fixed givens
 	var current = [];  // 81 ints, full board state (givens + player entries)
@@ -298,6 +299,18 @@
 		SudokuSource.requestPuzzle(difficulty, installGame);
 	}
 
+	function clearBoard() {
+		// wipe every player entry but keep the same puzzle
+		current = puzzle.slice();
+		marks = emptyMarks();
+		noteEdits = emptyNoteEdits();
+		selected = -1;
+		save();
+		render();
+		boardEl.classList.remove('solved');
+		recomputeNotes();
+	}
+
 	boardEl.addEventListener('click', function (e) {
 		var cell = e.target.closest('.sudoku-cell');
 		if (!cell) return;
@@ -325,6 +338,10 @@
 		setDifficulty(btn.getAttribute('data-diff'));
 		newGame();
 	});
+
+	if (clearEl) {
+		clearEl.addEventListener('click', clearBoard);
+	}
 
 	modeEl.addEventListener('click', function (e) {
 		var btn = e.target.closest('button');
