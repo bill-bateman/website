@@ -1,0 +1,91 @@
+.technique-demo {
+	max-width: 24rem;
+	margin: 1.5rem auto;
+}
+
+.technique-board .sudoku-cell {
+	cursor: default;
+	transition: background 0.2s ease;
+}
+
+.technique-board .sudoku-marks,
+.technique-board .sudoku-cell-text,
+.technique-board .sudoku-fill-text {
+	transition: opacity 0.2s ease;
+}
+
+.technique-board .sudoku-marks.dimmed,
+.technique-board .sudoku-cell-text.dimmed,
+.technique-board .sudoku-fill-text.dimmed {
+	opacity: 0.25;
+}
+
+.technique-board .sudoku-cell.technique-highlight {
+	background: #ffe58a;
+}
+
+.technique-board .sudoku-cell.has-marks {
+	position: relative;
+}
+
+.technique-board .sudoku-marks span {
+	transition: opacity 0.2s ease;
+}
+
+.technique-board .sudoku-marks span.candidate-removed {
+	opacity: 0;
+}
+
+.technique-board .sudoku-fill-text {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	color: #1a7a3a;
+	font-weight: bold;
+}
+
+.technique-board .sudoku-cell.filled .sudoku-marks {
+	opacity: 0;
+}
+
+.technique-board .sudoku-cell.filled .sudoku-fill-text {
+	opacity: 1;
+}
+
+.technique-demo-nav {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin: 1rem auto 0;
+}
+
+.technique-demo-nav-btn {
+	padding: 0.4rem 0.9rem;
+	font-size: 1rem;
+	border: 1px solid #333;
+	border-radius: 4px;
+	background: #fff;
+	color: #666;
+	cursor: pointer;
+}
+
+.technique-demo-nav-btn:hover:not(:disabled) {
+	background: #333;
+	color: #fff;
+}
+
+.technique-demo-nav-btn:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.technique-step-text {
+	text-align: center;
+	font-size: smaller;
+	color: grey;
+	font-style: italic;
+	margin-top: 1rem;
+}
