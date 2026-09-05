@@ -6,18 +6,9 @@ Hosted at https://bill.batemanzhou.com.
 
 # Development
 
-Mostly notes for myself. To see local changes, run:
+To see local changes, run `./scripts/serve.sh` from the root directory. This builds the website (using `python3 generate.py`), goes into the `public/` directory, and serves the content there on localhost.
 
-```py
-python3 generate.py
-cd public/
-python3 -m http.server
-```
-
-Or, starting from `public/`, in a convenient one-liner:
-```
-cd .. && python3 generate.py && cd public/ && python3 -m http.server
-```
+Note that `public/` is `.gitignore`d.
 
 # Deployment
 
