@@ -118,6 +118,8 @@
 		container.appendChild(boardEl);
 		renderBoard(boardEl, config.givens);
 
+		if (textEl) container.appendChild(textEl);
+
 		var nav = document.createElement('div');
 		nav.className = 'technique-demo-nav';
 		var prevBtn = document.createElement('button');
