@@ -451,3 +451,112 @@ SudokuTechniqueDemo.render({
     ]
 });
 </script>
+
+# Hard Techniques
+
+## Naked triple
+
+Very similar to the naked double, but we need 3 cells limited to a total of 3 candidates.
+
+Note that in the below example, the box could also be seen as having a hidden quadruple! (2, 3, 6, 9)
+
+
+<div id="naked-triple-demo" class="technique-demo"></div>
+
+<div id="naked-triple-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'naked-triple-demo',
+    textContainerId: 'naked-triple-step-text',
+    givens: [
+        9, 6, 0, 3, 4, 2, 0, 5, 0,
+        0, 4, 2, 0, 5, 0, 0, 0, 0,
+        5, 0, 0, 0, 0, 9, 0, 4, 0,
+        0, 0, 5, 2, 0, 0, 8, 9, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 3, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 0,
+        7, 0, 6, 0, 0, 0, 4, 0, 5,
+        0, 0, 0, 0, 0, 0, 0, 6, 0
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+            text: "Highlighting the box of interest."
+        },
+        {
+            active: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+            highlight: [6, 8, 16],
+            text: "The highlighted cells are a naked triple with 1, 7, 8."
+        },
+        {
+            active: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+            highlight: [15, 17, 24, 26],
+            text: "So, we can remove 1, 7, 8 from the rest of the box."
+        },
+        {
+            active: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+            highlight: [15, 17, 24, 26],
+            keepCandidates: [
+                { idx: 15, values: [3, 6, 9] },
+                { idx: 17, values: [3, 6, 9] },
+                { idx: 24, values: [2, 3, 6] },
+                { idx: 26, values: [2, 3, 6] }
+            ],
+            text: "Done!"
+        }
+    ]
+});
+</script>
+
+## Hidden triple
+
+Similar to hidden pair, but with 3 cells and 3 candidates.
+
+Note that the below example could also be seen as a naked quadruple! (1, 2, 3, 8 in the column; or 1, 2, 8, 9 in the box)
+
+<div id="hidden-triple-demo" class="technique-demo"></div>
+
+<div id="hidden-triple-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'hidden-triple-demo',
+    textContainerId: 'hidden-triple-step-text',
+    givens: [
+        4, 0, 0, 0, 0, 0, 6, 0, 9,
+        0, 0, 0, 0, 0, 0, 0, 4, 0,
+        0, 0, 0, 9, 0, 4, 7, 0, 0,
+        0, 9, 0, 1, 0, 0, 4, 6, 0,
+        2, 5, 0, 7, 0, 6, 8, 0, 0,
+        1, 0, 0, 0, 0, 0, 0, 7, 5,
+        3, 0, 2, 4, 0, 0, 5, 0, 0,
+        0, 0, 0, 0, 3, 0, 0, 0, 0,
+        0, 0, 0, 2, 0, 0, 3, 0, 0
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [8, 17, 26, 35, 44, 53, 62, 71, 80],
+            text: "Highlighting the column of interest."
+        },
+        {
+            active: [8, 17, 26, 35, 44, 53, 62, 71, 80],
+            highlight: [62, 71, 80],
+            text: "The highlighted cells are the only possibilities for 4, 6, 7."
+        },
+        {
+            active: [8, 17, 26, 35, 44, 53, 62, 71, 80],
+            highlight: [62, 71, 80],
+            keepCandidates: [
+                { idx: 62, values: [6, 7] },
+                { idx: 71, values: [4, 6, 7] },
+                { idx: 80, values: [4, 6, 7] }
+            ],
+            text: "So, we can remove all candidates that aren't 4, 6, 7."
+        }
+    ]
+});
+</script>
