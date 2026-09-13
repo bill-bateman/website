@@ -10,11 +10,11 @@ To see local changes, run `./scripts/serve.sh` from the root directory. This bui
 
 Note that `public/` is `.gitignore`d.
 
-Also note that for local dev, dependencies are managed by uv. But in the github workflow, for now, dependencies are manually `pip install`ed before running `generate.py`.
+Also note that dependencies are managed with `uv`.
 
 # Deployment
 
-Deployment happens automatically in GitHub Actions on pushes to the main branch. See `.github/workflows/build_and_deploy.yml`. It's pretty basic, it runs `generate.py` and `rsync`s the `public/` directory to the server.
+Deployment happens automatically in GitHub Actions on pushes to the main branch. See `.github/workflows/build_and_deploy.yml`. It's pretty basic, it uses uv for dependency management, runs `generate.py` and `rsync`s the `public/` directory to the server.
 
 # Licensing
 

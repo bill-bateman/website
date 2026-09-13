@@ -14,12 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Install
-        run: |
-          python3 -m pip install markdown
-      
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
       - name: Build
-        run: python3 generate.py
+        run: uv run generate.py
       
       - name: Setup SSH
         env:

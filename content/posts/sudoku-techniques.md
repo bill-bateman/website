@@ -793,3 +793,65 @@ SudokuTechniqueDemo.render({
     ]
 });
 </script>
+
+
+## XYZ-wing
+
+TODO text
+
+<div id="xyz-wing-demo" class="technique-demo"></div>
+
+<div id="xyz-wing-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'xyz-wing-demo',
+    textContainerId: 'xyz-wing-step-text',
+    givens: [
+        5, 3, 0, 0, 4, 0, 1, 6, 0,
+        4, 0, 0, 0, 0, 0, 0, 0, 5,
+        0, 6, 2, 0, 0, 0, 8, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 4, 6, 1, 0, 8, 0, 3, 9,
+        3, 0, 0, 9, 0, 4, 7, 1, 0,
+        6, 0, 4, 0, 0, 5, 0, 7, 1,
+        0, 9, 0, 4, 0, 7, 6, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    steps: [
+        { text: "" },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            text: ""
+        },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            highlight: [46],
+            text: ""
+        },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            highlight: [46, 47],
+            text: ""
+        },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            highlight: [46, 47, 55],
+            text: ""
+        },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            highlight: [46, 47, 55, 28],
+            text: ""
+        },
+        {
+            active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
+            highlight: [28],
+            keepCandidates: [
+                { idx: 28, values: [1, 2, 5, 7] }
+            ],
+            text: ""
+        }
+    ]
+});
+</script>
