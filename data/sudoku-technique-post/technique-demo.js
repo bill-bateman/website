@@ -78,8 +78,38 @@
 		}
 	}
 
-	function applyStep(boardEl, textEl, state, step) {
+	var SVG_NS = 'http://www.w3.org/2000/svg';
+
+	function cellCenter(idx) {
+		return { x: (idx % 9) + 0.5, y: Math.floor(idx / 9) + 0.5 };
+	}
+
+	// Draws connector lines between cell centers on an SVG overlay stacked on
+	// top of the board. Used for patterns (x-wing, xy-wing, ...) where the
+	// relationship between cells is easier to see as a line than to infer
+	// from highlight color alone. Each spec is either a [from, to] pair or an
+	// {from, to, dashed} object; dashed marks a "sees" elimination link
+	// rather than the pattern's own shape.
+	function drawLines(linesSvg, lines) {
+		while (linesSvg.firstChild) linesSvg.removeChild(linesSvg.firstChild);
+		(lines || []).forEach(function (spec) {
+			var from = Array.isArray(spec) ? spec[0] : spec.from;
+			var to = Array.isArray(spec) ? spec[1] : spec.to;
+			var a = cellCenter(from), b = cellCenter(to);
+			var line = document.createElementNS(SVG_NS, 'line');
+			line.setAttribute('x1', a.x);
+			line.setAttribute('y1', a.y);
+			line.setAttribute('x2', b.x);
+			line.setAttribute('y2', b.y);
+			line.setAttribute('class', 'technique-line' + (!Array.isArray(spec) && spec.dashed ? ' dashed' : ''));
+			linesSvg.appendChild(line);
+		});
+	}
+
+	function applyStep(boardEl, textEl, linesSvg, state, step) {
 		if (step.active) state.active = step.active;
+		if (step.lines) state.lines = step.lines;
+		if (linesSvg) drawLines(linesSvg, state.lines);
 		var activeSet = {}, highlightSet = {};
 		(state.active || []).forEach(function (i) { activeSet[i] = true; });
 		(step.highlight || []).forEach(function (i) { highlightSet[i] = true; });
@@ -113,10 +143,19 @@
 		if (!container) return;
 		var textEl = config.textContainerId ? document.getElementById(config.textContainerId) : null;
 
+		var boardWrap = document.createElement('div');
+		boardWrap.className = 'technique-board-wrap';
+		container.appendChild(boardWrap);
+
 		var boardEl = document.createElement('div');
 		boardEl.className = 'sudoku-board technique-board';
-		container.appendChild(boardEl);
+		boardWrap.appendChild(boardEl);
 		renderBoard(boardEl, config.givens);
+
+		var linesSvg = document.createElementNS(SVG_NS, 'svg');
+		linesSvg.setAttribute('class', 'technique-lines');
+		linesSvg.setAttribute('viewBox', '0 0 9 9');
+		boardWrap.appendChild(linesSvg);
 
 		if (textEl) container.appendChild(textEl);
 
@@ -138,9 +177,9 @@
 
 		function showStep() {
 			resetBoardContent(boardEl, config.givens);
-			var state = { active: null };
+			var state = { active: null, lines: null };
 			for (var i = 0; i <= stepIdx; i++) {
-				applyStep(boardEl, textEl, state, config.steps[i]);
+				applyStep(boardEl, textEl, linesSvg, state, config.steps[i]);
 			}
 			prevBtn.disabled = stepIdx <= 0;
 			nextBtn.disabled = stepIdx >= config.steps.length - 1;

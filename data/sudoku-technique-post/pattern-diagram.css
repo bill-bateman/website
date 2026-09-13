@@ -1,0 +1,49 @@
+.sudoku-pattern-diagram {
+	display: grid;
+	width: fit-content;
+	margin: 1.5rem auto;
+	border: 2px solid #333;
+	background: #fff;
+	font-size: 0.75rem;
+	line-height: 1;
+	color: #888;
+}
+
+.sudoku-pattern-diagram .pattern-cell {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.15rem;
+	min-height: 2.4rem;
+	padding: 0.15rem;
+	border: 1px solid #cfcfcf;
+	box-sizing: border-box;
+}
+
+.sudoku-pattern-diagram .pattern-cell.pattern-highlight {
+	background: #ffe58a;
+}
+
+.sudoku-pattern-diagram .pattern-elim {
+	color: #b00020;
+	font-weight: bold;
+}
+
+.sudoku-pattern-diagram .pattern-gap-col,
+.sudoku-pattern-diagram .pattern-gap-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #cfcfcf;
+	box-sizing: border-box;
+	color: #bbb;
+}
+
+.sudoku-pattern-diagram .pattern-gap-col {
+	min-height: 2.4rem;
+}
+
+.sudoku-pattern-diagram .pattern-gap-row {
+	height: 1rem;
+}

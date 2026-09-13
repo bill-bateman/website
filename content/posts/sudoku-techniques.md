@@ -21,6 +21,7 @@ None of these techniques are new. For reference, see [learn-sudoku.com](https://
 
 <link rel="stylesheet" href="/sudoku/sudoku.css" />
 <link rel="stylesheet" href="/sudoku-technique-post/technique-demo.css" />
+<link rel="stylesheet" href="/sudoku-technique-post/pattern-diagram.css" />
 
 # Easy Techniques
 
@@ -34,6 +35,7 @@ Naked singles are the easiest. If a cell has only one possible candidate, then f
 
 <script src="/sudoku/sudoku-utils.js"></script>
 <script src="/sudoku-technique-post/technique-demo.js"></script>
+<script src="/sudoku-technique-post/pattern-diagram.js"></script>
 <script>
 SudokuTechniqueDemo.render({
     containerId: 'naked-single-demo',
@@ -556,6 +558,237 @@ SudokuTechniqueDemo.render({
                 { idx: 80, values: [4, 6, 7] }
             ],
             text: "So, we can remove all candidates that aren't 4, 6, 7."
+        }
+    ]
+});
+</script>
+
+## X-wing
+
+In the x-wing, you can determine that one value has to occur in a specific overlap area.
+
+E.g. in the example below:
+
+- if the top left of the x-wing is 1
+    - the top-right is 6
+    - the bottom-left is 4
+    - the bottom-right is 1
+- if the top left of the x-wing is 6
+    - the top-right is 1
+    - the bottom-right is 4
+    - the bottom-left is 1
+
+So, in the 2 columns of interest, 1 can only occur in the x-wing rows.
+
+Note that (1) exists in all 4 corners of the x-wing. I.e. the x-wing pattern is like:
+
+<pre class="sudoku-pattern">
+x y | ... | x y
+... | ... | ...
+x z | ... | x z
+</pre>
+
+or
+
+<pre class="sudoku-pattern">
+x y | ... | x z
+... | ... | ...
+x y | ... | x z
+</pre>
+
+<div id="x-wing-demo" class="technique-demo"></div>
+
+<div id="x-wing-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'x-wing-demo',
+    textContainerId: 'x-wing-step-text',
+    givens: [
+        4, 5, 0, 8, 9, 0, 3, 2, 7,
+        7, 3, 9, 4, 2, 5, 1, 8, 6,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        5, 6, 0, 9, 7, 0, 2, 3, 8,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        3, 1, 8, 6, 5, 9, 4, 7, 2,
+        0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 45, 46, 47, 48, 49, 50, 51, 52, 53],
+            text: "Highlighting the rows of interest."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 45, 46, 47, 48, 49, 50, 51, 52, 53],
+            highlight: [2, 5, 47, 50],
+            lines: [[2, 50], [5, 47]],
+            text: "The highlighted cells form an x-wing pattern."
+        },
+        {
+            active: [2, 11, 20, 29, 38, 47, 56, 65, 74, 5, 14, 23, 32, 41, 50, 59, 68, 77],
+            highlight: [2, 5, 47, 50],
+            text: "In the highlighted columns, 1 must occur in the x-wing rows."
+        },
+        {
+            active: [2, 11, 20, 29, 38, 47, 56, 65, 74, 5, 14, 23, 32, 41, 50, 59, 68, 77],
+            highlight: [20, 29, 38, 23, 32, 41, 59, 77],
+            text: "We can remove 1 as an option from the rest of both columns."
+        },
+        {
+            active: [2, 11, 20, 29, 38, 47, 56, 65, 74, 5, 14, 23, 32, 41, 50, 59, 68, 77],
+            highlight: [20, 29, 38, 23, 32, 41, 59, 77],
+            keepCandidates: [
+                { idx: 20, values: [2, 6] },
+                { idx: 29, values: [2, 3, 4, 7] },
+                { idx: 38, values: [2, 3, 4, 7] },
+                { idx: 23, values: [3, 6, 7] },
+                { idx: 32, values: [2, 3, 4, 6, 8] },
+                { idx: 41, values: [2, 3, 4, 6, 8] },
+                { idx: 59, values: [2, 3, 4, 7, 8] },
+                { idx: 77, values: [2, 3, 4, 7, 8] }
+            ],
+            text: "Done!"
+        }
+    ]
+});
+</script>
+
+## XY-wing
+
+XY-wing is similar to the X-wing, but we can only the pivot from cells that can see both corners.
+
+<pre class="sudoku-pattern">
+y z | ... | x y
+... | ... | ...
+x z | ... | <>
+</pre>
+
+- if the top-left corner is y
+    - top right is x
+    - bottom-right cannot be x
+- if the top-left corner is z
+    - bottom-left is x
+    - bottom-right cannot be x
+
+<div id="xy-wing-demo" class="technique-demo"></div>
+
+<div id="xy-wing-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'xy-wing-demo',
+    textContainerId: 'xy-wing-step-text',
+    givens: [
+        0, 4, 5, 6, 0, 7, 8, 9, 0,
+        8, 3, 0, 0, 2, 9, 0, 0, 5,
+        9, 0, 0, 5, 0, 0, 1, 0, 0,
+        4, 1, 0, 0, 0, 0, 2, 5, 0,
+        0, 0, 0, 0, 0, 5, 4, 0, 6,
+        5, 0, 0, 2, 4, 0, 0, 3, 0,
+        6, 0, 0, 8, 0, 0, 0, 0, 0,
+        7, 0, 0, 0, 0, 2, 3, 0, 4,
+        0, 2, 0, 0, 0, 0, 0, 8, 0
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 54, 63, 72,
+                    13, 22, 31, 37, 38, 39, 40, 41, 42, 43, 44, 49, 58, 67, 76],
+            text: "Highlighting rows and columns of interest."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 54, 63, 72,
+                    13, 22, 31, 37, 38, 39, 40, 41, 42, 43, 44, 49, 58, 67, 76],
+            highlight: [0, 4, 36],
+            lines: [[0, 4], [0, 36]],
+            text: "These 3 cells form the 'Y', with 3 as the common value."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 54, 63, 72,
+                    13, 22, 31, 37, 38, 39, 40, 41, 42, 43, 44, 49, 58, 67, 76],
+            highlight: [0, 4, 36],
+            text: "3 must be either in the top-right or bottom-left."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 54, 63, 72,
+                    13, 22, 31, 37, 38, 39, 40, 41, 42, 43, 44, 49, 58, 67, 76],
+            highlight: [0, 4, 36, 40],
+            lines: [[0, 4], [0, 36], { from: 4, to: 40, dashed: true }, { from: 36, to: 40, dashed: true }],
+            text: "Any cell that can see both cannot be 3."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 27, 36, 45, 54, 63, 72,
+                    13, 22, 31, 37, 38, 39, 40, 41, 42, 43, 44, 49, 58, 67, 76],
+            highlight: [0, 4, 36, 40],
+            keepCandidates: [
+                { idx: 40, values: [1, 7, 8, 9] }
+            ],
+            text: "Done!"
+        }
+    ]
+});
+</script>
+
+Note that xy-wing can be used on boxes too!
+
+<div id="xy-wing-box-demo" class="technique-demo"></div>
+
+<div id="xy-wing-box-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'xy-wing-box-demo',
+    textContainerId: 'xy-wing-box-step-text',
+    givens: [
+        0, 0, 0, 2, 0, 0, 0, 0, 4,
+        0, 0, 0, 0, 0, 0, 2, 0, 0,
+        0, 0, 0, 0, 7, 0, 0, 0, 0,
+        5, 0, 0, 1, 6, 0, 0, 0, 0,
+        8, 0, 1, 9, 0, 5, 0, 0, 0,
+        0, 0, 6, 0, 8, 3, 0, 0, 0,
+        0, 6, 8, 0, 0, 0, 9, 4, 0,
+        4, 5, 7, 0, 0, 0, 0, 1, 0,
+        9, 1, 0, 0, 0, 0, 0, 0, 5
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    45, 46, 47, 48, 49, 50, 51, 52, 53],
+            text: "Hightlighting rows and box of interest."
+        },
+        {
+            active: [27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    45, 46, 47, 48, 49, 50, 51, 52, 53],
+            highlight: [48, 40, 45],
+            lines: [[48, 40], [48, 45]],
+            text: "These 3 cells form the 'Y', with 2 as the common value."
+        },
+        {
+            active: [27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    45, 46, 47, 48, 49, 50, 51, 52, 53],
+            highlight: [48, 40, 45],
+            lines: [[48, 40], [48, 45]],
+            text: "2 must be either in the top-right or bottom-left."
+        },
+        {
+            active: [27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    45, 46, 47, 48, 49, 50, 51, 52, 53],
+            highlight: [48, 40, 45, 37],
+            lines: [[48, 40], [48, 45], { from: 40, to: 37, dashed: true }, { from: 45, to: 37, dashed: true }],
+            text: "So any cell that sees both cannot be 2."
+        },
+        {
+            active: [27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    45, 46, 47, 48, 49, 50, 51, 52, 53],
+            highlight: [48, 40, 45, 37],
+            keepCandidates: [
+                { idx: 37, values: [3, 4, 7] }
+            ],
+            text: "Done!"
         }
     ]
 });
