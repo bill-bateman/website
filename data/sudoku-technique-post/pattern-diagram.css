@@ -47,3 +47,11 @@
 .sudoku-pattern-diagram .pattern-gap-row {
 	height: 1rem;
 }
+
+.sudoku-pattern-diagram .pattern-box-border-right {
+	border-right: 2px solid #333;
+}
+
+.sudoku-pattern-diagram .pattern-box-border-bottom {
+	border-bottom: 2px solid #333;
+}

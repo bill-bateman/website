@@ -61,11 +61,18 @@
 		grid.className = 'sudoku-pattern-diagram';
 		grid.style.gridTemplateColumns = 'repeat(' + parsed.cols + ', 2.4rem)';
 
+		// Only draw the thick 3x3 box-boundary lines (like a real sudoku
+		// grid) once the diagram is bigger than a single 3-wide/3-tall box -
+		// otherwise they'd just double up on the outer border.
+		var boxCols = parsed.cols > 3;
+		var boxRows = parsed.rows.length > 3;
+
 		for (var r = 0; r < parsed.rows.length; r++) {
 			var row = parsed.rows[r];
+			var rowBoxBottom = boxRows && r % 3 === 2 && r < parsed.rows.length - 1;
 			if (row.gap) {
 				var gapRow = document.createElement('div');
-				gapRow.className = 'pattern-gap-row';
+				gapRow.className = rowBoxBottom ? 'pattern-gap-row pattern-box-border-bottom' : 'pattern-gap-row';
 				gapRow.style.gridColumn = '1 / -1';
 				gapRow.textContent = '⋮';
 				grid.appendChild(gapRow);
@@ -73,6 +80,7 @@
 			}
 			for (var c = 0; c < parsed.cols; c++) {
 				var cell = row.cells[c];
+				var colBoxRight = boxCols && c % 3 === 2 && c < parsed.cols - 1;
 				var el = document.createElement('div');
 				if (!cell || cell.gap) {
 					el.className = 'pattern-gap-col';
@@ -86,6 +94,8 @@
 						el.appendChild(mark);
 					}
 				}
+				if (colBoxRight) el.className += ' pattern-box-border-right';
+				if (rowBoxBottom) el.className += ' pattern-box-border-bottom';
 				grid.appendChild(el);
 			}
 		}

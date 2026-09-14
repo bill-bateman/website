@@ -797,7 +797,23 @@ SudokuTechniqueDemo.render({
 
 ## XYZ-wing
 
-TODO text
+As the techniques get more complicated I find it harder to put into words.
+
+The setup is you have a cell with 3 candidates (XYZ) which can see a cell that has XZ and a cell that has YZ. The XZ cell and the YZ cell can't see each other - i.e. the 3 cells are not within a single row/box/column. Anything that can see all 3 cells cannot have Z.
+
+<pre class="sudoku-pattern">
+x y z | ... | y z | ...
+... | ... | ... | ...
+... | ... | <> | x z
+... | ... | ... | ...
+</pre>
+
+- if the XZ cell is X
+    - XYZ cell can be only Y or Z
+    - you can apply a naked pair rule to anything that can see the XYZ and YZ cells
+- if the XZ cell is Z
+    - then anything that can see the XZ cell cannot be Z
+
 
 <div id="xyz-wing-demo" class="technique-demo"></div>
 
@@ -819,30 +835,30 @@ SudokuTechniqueDemo.render({
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ],
     steps: [
-        { text: "" },
+        { text: "Initial state." },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
-            text: ""
+            text: "Highlighting areas of interest."
         },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
             highlight: [46],
-            text: ""
+            text: "Our XYZ cell (2, 5, 8)."
         },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
             highlight: [46, 47],
-            text: ""
+            text: "Add our XZ cell (5, 8)."
         },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
             highlight: [46, 47, 55],
-            text: ""
+            text: "Add our YZ cell (2, 8)."
         },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
             highlight: [46, 47, 55, 28],
-            text: ""
+            text: "Anything that can see all 3 cells cannot have 8."
         },
         {
             active: [1, 10, 19, 27, 28, 29, 36, 37, 38, 45, 46, 47, 55, 64, 73],
@@ -850,7 +866,7 @@ SudokuTechniqueDemo.render({
             keepCandidates: [
                 { idx: 28, values: [1, 2, 5, 7] }
             ],
-            text: ""
+            text: "Done!"
         }
     ]
 });
