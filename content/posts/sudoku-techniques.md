@@ -583,17 +583,19 @@ So, in the 2 columns of interest, 1 can only occur in the x-wing rows.
 Note that (1) exists in all 4 corners of the x-wing. I.e. the x-wing pattern is like:
 
 <pre class="sudoku-pattern">
-x y | ... | x y
-... | ... | ...
-x z | ... | x z
+x y | ... | ... | x y
+... | ... | ... | ...
+... | ... | ... | ...
+x z | ... | ... | x z
 </pre>
 
 or
 
 <pre class="sudoku-pattern">
-x y | ... | x z
-... | ... | ...
-x y | ... | x z
+x y | ... | ... | x z
+... | ... | ... | ...
+... | ... | ... | ...
+x y | ... | ... | x z
 </pre>
 
 <div id="x-wing-demo" class="technique-demo"></div>
@@ -661,9 +663,10 @@ SudokuTechniqueDemo.render({
 XY-wing is similar to the X-wing, but we can only the pivot from cells that can see both corners.
 
 <pre class="sudoku-pattern">
-y z | ... | x y
-... | ... | ...
-x z | ... | <>
+y z | ... | ... | x y
+... | ... | ... | ...
+... | ... | ... | ...
+x z | ... | ... | <>
 </pre>
 
 - if the top-left corner is y
