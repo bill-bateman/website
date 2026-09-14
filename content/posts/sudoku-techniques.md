@@ -2,7 +2,7 @@
 title: "Sudoku & Techniques"
 subtitle: "games / sudoku"
 category: "games"
-date: "2026-09-04"
+date: "2026-09-13"
 summary: "Sudoku game, plus techniques walkthrough."
 post: True
 ---
@@ -15,9 +15,11 @@ Why make a Sudoku game? There are free ones online after all
 - It is a PWA, so you can download it onto smartphones and use it offline.
 - I can control the difficulty, and make it harder!
 
-The way I controlled the difficulty is by separating techniques into categories. E.g. a difficult puzzle requires the use of at least 1 difficult technique (and I try to get at least 2 difficult techniques). In the rest of this post, I'll show examples of all the techniques that my Sudoku games might require. There are more, and hopefully I'll come back and add more to the game and to this post!
+The way I controlled the difficulty is by separating techniques into categories. E.g. a difficult puzzle requires the use of at least 1 difficult technique (and I try to get at least 2 difficult techniques).
 
-None of these techniques are new. For reference, see [learn-sudoku.com](https://www.learn-sudoku.com/index.html), [sudokuwiki.org](https://www.sudokuwiki.org/Introduction), and other similar sites.
+In the rest of this post, I'll show examples of all the techniques that my Sudoku games might require. There are more, and hopefully I'll come back and add more to the game and to this post!
+
+None of these techniques are new. As reference, I mainly used [learn-sudoku.com](https://www.learn-sudoku.com/index.html) and [sudokuwiki.org](https://www.sudokuwiki.org/Introduction), but there are many other similarly helpful sites.
 
 <link rel="stylesheet" href="/sudoku/sudoku.css" />
 <link rel="stylesheet" href="/sudoku-technique-post/technique-demo.css" />
@@ -868,6 +870,112 @@ SudokuTechniqueDemo.render({
             highlight: [28],
             keepCandidates: [
                 { idx: 28, values: [1, 2, 5, 7] }
+            ],
+            text: "Done!"
+        }
+    ]
+});
+</script>
+
+## Swordfish
+
+Here, we find 3 rows (or 3 columns) where a value only has 2 candidates in each of the 3 rows. Additionally, each row must have 1 overlapping column with each of the other rows.
+
+<pre class="sudoku-pattern">
+x ... | ... | x ... | ...
+... | ... | ... | ...
+... | ... | ... | ...
+
+... | ... | x ... | x ...
+... | ... | ... | ...
+... | ... | ... | ...
+
+x ... | ... | ... | x ...
+</pre>
+
+In this case, we can remove x as a candidate from all the other cells in the 3 columns. This is because there are 2 ways for the x placements to play out, either:
+
+<pre class="sudoku-pattern">
+x | ... | ... | ...
+... | ... | ... | ...
+... | ... | ... | ...
+
+... | ... | x | ...
+... | ... | ... | ...
+... | ... | ... | ...
+
+... | ... | ... | x
+</pre>
+
+or
+
+<pre class="sudoku-pattern">
+... | ... | x | ...
+... | ... | ... | ...
+... | ... | ... | ...
+
+... | ... | ... | x
+... | ... | ... | ...
+... | ... | ... | ...
+
+x | ... | ... | ...
+</pre>
+
+So, all the other cells in the 3 columns cannot have x!
+
+<div id="swordfish-demo" class="technique-demo"></div>
+
+<div id="swordfish-step-text" class="technique-step-text"></div>
+
+<script>
+SudokuTechniqueDemo.render({
+    containerId: 'swordfish-demo',
+    textContainerId: 'swordfish-step-text',
+    givens: [
+        0, 0, 0, 7, 0, 0, 4, 6, 1,
+        7, 6, 3, 4, 2, 1, 9, 8, 5,
+        4, 1, 9, 5, 8, 6, 2, 0, 0,
+        0, 4, 0, 0, 5, 8, 0, 0, 6,
+        0, 7, 0, 6, 0, 2, 0, 4, 8,
+        6, 3, 8, 1, 7, 4, 5, 9, 2,
+        1, 0, 6, 0, 4, 0, 0, 2, 0,
+        3, 2, 4, 8, 1, 7, 6, 5, 9,
+        0, 9, 7, 2, 6, 0, 0, 1, 4
+    ],
+    steps: [
+        { text: "Initial state." },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    72, 73, 74, 75, 76, 77, 78, 79, 80],
+            text: "Highlighting the 3 rows of interest."
+        },
+        {
+            active: [0, 1, 2, 3, 4, 5, 6, 7, 8, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+                    72, 73, 74, 75, 76, 77, 78, 79, 80],
+            highlight: [4, 5, 40, 42, 77, 78],
+            lines: [[4, 5], [40, 42], [77, 78], [4, 40], [5, 77], [42, 78]],
+            text: "Our swordfish - in each row, 3 has only 2 spots."
+        },
+        {
+            active: [4, 13, 22, 31, 40, 49, 58, 67, 76, 5, 14, 23, 32, 41, 50, 59, 68, 77,
+                    6, 15, 24, 33, 42, 51, 60, 69, 78],
+            highlight: [4, 5, 40, 42, 77, 78],
+            text: "So, we can remove 3 from the 3 shared columns."
+        },
+        {
+            active: [4, 13, 22, 31, 40, 49, 58, 67, 76, 5, 14, 23, 32, 41, 50, 59, 68, 77,
+                    6, 15, 24, 33, 42, 51, 60, 69, 78],
+            highlight: [33, 59, 60],
+            text: "We can remove 3 from the highlighted cells."
+        },
+        {
+            active: [4, 13, 22, 31, 40, 49, 58, 67, 76, 5, 14, 23, 32, 41, 50, 59, 68, 77,
+                    6, 15, 24, 33, 42, 51, 60, 69, 78],
+            highlight: [33, 59, 60],
+            keepCandidates: [
+                { idx: 33, values: [1, 7] },
+                { idx: 59, values: [5, 9] },
+                { idx: 60, values: [7, 8] }
             ],
             text: "Done!"
         }
