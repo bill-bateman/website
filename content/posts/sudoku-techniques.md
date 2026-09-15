@@ -7,6 +7,8 @@ summary: "Sudoku game, plus techniques walkthrough."
 post: True
 ---
 
+_Last edited: 2026-09-14_
+
 I made a Sudoku game! Check it out [here](sudoku/).
 
 Why make a Sudoku game? There are free ones online after all
@@ -662,7 +664,7 @@ SudokuTechniqueDemo.render({
 
 ## XY-wing
 
-XY-wing is similar to the X-wing, but we can only the pivot from cells that can see both corners.
+XY-wing is similar to the X-wing, but we can only remove the value from cells that can see both corners.
 
 <pre class="sudoku-pattern">
 y z | ... | ... | x y
@@ -809,8 +811,8 @@ The setup is you have a cell with 3 candidates (XYZ) which can see a cell that h
 <pre class="sudoku-pattern">
 x y z | ... | y z | ...
 ... | ... | ... | ...
-... | ... | <> | x z
-... | ... | ... | ...
+<> | ... | ... | ...
+x z | ... | ... | ...
 </pre>
 
 - if the XZ cell is X
