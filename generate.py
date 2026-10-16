@@ -108,6 +108,14 @@ def create_sudoku_page(base_html):
         _ = f.write(html_str)
 
 
+def _escape_xml(content: str) -> str:
+    content = content.replace("&", "&amp;")
+    content = content.replace("<", "&lt;")
+    content = content.replace(">", "&gt;")
+    content = content.replace('"', "&quot;")
+    content = content.replace("'", "&apos;")
+    return content
+
 def create_rss(fields):
     with open("rss_format.xml", "r") as f:
         base_rss = f.read()
@@ -122,12 +130,12 @@ def create_rss(fields):
             continue
         items.append(
             rss_item.format(
-                title=f.get("title"),
-                description=f.get("summary"),
+                title=_escape_xml(f.get("title")),
+                description=_escape_xml(f.get("summary")),
                 link="https://bill.batemanzhou.com/" + f.get("url"),
-                category=f.get("category"),
+                category=_escape_xml(f.get("category")),
                 # format date nicely
-                pubDate=format_datetime(datetime.strptime(f.get("date"), "%Y-%m-%d")),  # noqa: DTZ007 - don't care about timezones here
+                pubDate=format_datetime(datetime.strptime(f.get("date"), "%Y-%m-%d")),
             )
         )
 
